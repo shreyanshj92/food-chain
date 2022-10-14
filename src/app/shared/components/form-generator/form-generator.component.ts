@@ -15,41 +15,7 @@ export class FormGeneratorComponent implements OnInit {
   @Output() formDetailsOutput: EventEmitter<GeneratedFormOutput> = new EventEmitter<GeneratedFormOutput>();
   @Input() formName!: string;
   @Input() formFields!: FormField[];
-  mockdata = [
-    {
-      fieldLabel: 'text test',
-      placeHolder: 'placeholder text',
-      userAnswer: '',
-      fieldType: 'text',
-      required: false,
-      options: []
-    },
-    {
-      fieldLabel: 'date test',
-      placeHolder: 'placeholder text',
-      userAnswer: '',
-      fieldType: 'date',
-      required: false,
-      options: []
-    },
-    {
-      fieldLabel: 'textArea test',
-      placeHolder: 'placeholder text',
-      userAnswer: '',
-      fieldType: 'textArea',
-      required: true,
-      options: []
-    },
-    {
-      fieldLabel: 'dropdown test',
-      placeHolder: '',
-      userAnswer: '',
-      fieldType: 'dropDown',
-      required: false,
-      options: ['op1','op2','op3']
-    }
-  ];
-  
+ 
   dynamicForm: FormGroup = this.fb.group({});
   fieldTypes = FIELD_TYPES;
 
