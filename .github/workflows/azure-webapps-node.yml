@@ -10,7 +10,7 @@ env:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -20,12 +20,8 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
     - name: Install dependencies
       run: npm install
-    - name: Install @zxing/library    
-      run: npm i @zxing/library          
-    - name: Install @zxing/browser
-      run: npm i @zxing/browser
     - name: Build
-      run: npm run build
+      run: npm run build --prod
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v1
       with:
