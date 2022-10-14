@@ -1,0 +1,26 @@
+<section>
+<div class="generator">
+
+  <mat-form-field appearance="fill">
+    <mat-label>QR code data</mat-label>
+    <input matInput type="text" [(ngModel)]="myAngularxQrCode">
+    <button *ngIf="myAngularxQrCode" matSuffix mat-icon-button aria-label="Clear"
+      (click)="myAngularxQrCode=''; isQrCodeGenerated=false">
+      <mat-icon>close</mat-icon>
+    </button>
+
+  </mat-form-field>
+
+  <div>
+    <button mat-raised-button [disabled]="!myAngularxQrCode" (click)="isQrCodeGenerated = true">Generate QR
+      Code</button>
+
+  </div>
+  <div *ngIf="isQrCodeGenerated && myAngularxQrCode">
+    <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'">
+    </qrcode>
+    <a mat-stroked-button [href]="qrCodeDownloadLink" download="qrcode"><img class="download-icon"
+        src="../../../../assets/icons/download-to-storage-drive.png" alt="">Download</a>
+  </div>
+</div>
+</section>
