@@ -25,6 +25,6 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
   ],
   providers: [],
   bootstrap: [],
-  exports:[QrCodeGeneratorComponent, QrCodeReaderComponent, MaterialModule]
+  exports:[QrCodeGeneratorComponent, QrCodeReaderComponent, MaterialModule, FormGeneratorComponent]
 })
 export class SharedModule { }
