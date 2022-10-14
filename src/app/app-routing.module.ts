@@ -1,56 +1,77 @@
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './shared/auth.guard';
-import { DashboardComponent } from './view/dashboard/dashboard.component';
 import { LoginComponent } from './view/login/login.component';
 import { NgModule } from '@angular/core';
-import { QrCodeGeneratorComponent } from './shared/components/qr-code-generator/qr-code-generator.component';
 import { QrCodeReaderComponent } from './shared/components/qr-code-reader/qr-code-reader.component';
 import { Role } from './shared/models/roles';
-import { UserComponent } from './view/user/user/user.component';
 
 const routes: Routes = [
   {
-    path: "scanner",
-    component: QrCodeReaderComponent
-  },
-
-  {
-    path: "generator",
-    component: QrCodeGeneratorComponent
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent
+    path: 'scanner',
+    component: QrCodeReaderComponent,
+    data: {
+      roles: [
+        Role.Farmer,
+        Role.Admin,
+        Role.Manufacturer,
+        Role.Retailer,
+        Role.Supplier,
+      ],
+    },
   },
   {
     path: 'admin',
-    component: QrCodeGeneratorComponent,
     canActivate: [AuthGuard],
-    data: { roles: [Role.Admin] }
+    canLoad: [AuthGuard],
+    loadChildren: () =>
+      import('./view/admin-dashboard/admin-dashboard.module').then((m) => m.AdminDashboardModule),
+    data: { roles: [Role.Admin] },
   },
   {
-    path: 'user',
-    component: UserComponent,
+    path: 'farmer',
     canActivate: [AuthGuard],
-    canLoad:[AuthGuard],
-    loadChildren:()=>import('./view/user/user.module').then(m=>m.UserModule),
-    data: { roles: [Role.User] }
+    canLoad: [AuthGuard],
+    loadChildren: () =>
+      import('./view/farmer/farmer.module').then((m) => m.FarmerModule),
+    data: { roles: [Role.Farmer] },
+  },
+  {
+    path: 'manufacturer',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
+    loadChildren: () =>
+      import('./view/manufacturer-dashboard/manufacturer-dashboard.module').then((m) => m.ManufacturerDashboardModule),
+    data: { roles: [Role.Manufacturer] },
+  },
+  {
+    path: 'supplier',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
+    loadChildren: () =>
+      import('./view/supplier-dashboard/supplier-dashboard.module').then((m) => m.SupplierDashboardModule),
+    data: { roles: [Role.Supplier] },
+  },
+  {
+    path: 'retailer',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
+    loadChildren: () =>
+      import('./view/retailer/retailer.module').then((m) => m.RetailerModule),
+    data: { roles: [Role.Retailer] },
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
 
   // otherwise redirect to home
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
 
-
-
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  selector: 'app-process-flow',
+  templateUrl: './process-flow.component.html',
+  styleUrls: ['./process-flow.component.scss']
 })
-export class UserComponent implements OnInit {
+export class ProcessFlowComponent implements OnInit {
 
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
@@ -16,7 +16,8 @@ export class UserComponent implements OnInit {
   });
 
   constructor(private _formBuilder: FormBuilder) {}
+
   ngOnInit(): void {
-          
   }
+
 }
