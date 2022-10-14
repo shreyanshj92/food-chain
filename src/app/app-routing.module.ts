@@ -2,6 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './shared/auth.guard';
 import { DashboardComponent } from './view/dashboard/dashboard.component';
+import { FormGeneratorComponent } from './shared/components/form-generator/form-generator.component';
 import { LoginComponent } from './view/login/login.component';
 import { NgModule } from '@angular/core';
 import { QrCodeGeneratorComponent } from './shared/components/qr-code-generator/qr-code-generator.component';
@@ -10,6 +11,10 @@ import { Role } from './shared/models/roles';
 import { UserComponent } from './view/user/user/user.component';
 
 const routes: Routes = [
+  {
+    path: "testformgen",
+    component: FormGeneratorComponent
+  },
   {
     path: "scanner",
     component: QrCodeReaderComponent
