@@ -1,0 +1,31 @@
+<h1>Dynamic forms \ {{formName}}</h1>
+<form [formGroup]="dynamicForm" class="form-group">
+    <div *ngFor="let field of formFields" class="mb-3">
+        <mat-form-field>
+            <mat-label>{{field.fieldLabel}}</mat-label>
+
+        <div *ngIf="field.fieldType == 'text'">
+                <input matInput [id]="field.fieldLabel" type="text"
+                [formControlName]="field.fieldLabel" />
+            
+        </div>
+        <div *ngIf="field.fieldType == 'textArea'">
+                <textarea matInput [id]="field.fieldLabel" [formControlName]="field.fieldLabel"></textarea>
+        </div>
+        <div *ngIf="field.fieldType == 'dropDown'">
+                <mat-select [id]="field.fieldLabel" [formControlName]="field.fieldLabel">
+                    <mat-option *ngFor="let op of field.options" [value]="op">{{ op }}</mat-option>
+                </mat-select>
+        </div>
+        <div *ngIf="field.fieldType == 'date'">
+            <input matInput [matDatepicker]="picker" [formControlName]="field.fieldLabel">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </div>
+    </mat-form-field>
+
+    </div>
+    <button class="btn btn-primary">Save</button>
+</form>
+{{dynamicForm.value | json}}
