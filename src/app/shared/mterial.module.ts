@@ -1,3 +1,5 @@
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
+
 import { CommonModule } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -21,7 +23,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatRippleModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -39,6 +40,7 @@ import { NgModule } from '@angular/core';
 @NgModule({
   declarations: [],
   imports: [
+    MatNativeDateModule,
     MatDatepickerModule,
     CommonModule,
     MatAutocompleteModule,
@@ -80,6 +82,7 @@ import { NgModule } from '@angular/core';
   providers: [],
   bootstrap: [],
   exports: [
+    MatNativeDateModule,
     MatDatepickerModule,
     CommonModule,
     MatAutocompleteModule,

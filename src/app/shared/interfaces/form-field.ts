@@ -6,3 +6,8 @@ export interface FormField {
     required: boolean;
     options: string[];
 }
+
+export interface GeneratedFormOutput {
+    formName: string;
+    formValue: any;
+}
