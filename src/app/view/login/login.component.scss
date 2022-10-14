@@ -1,0 +1,19 @@
+.card {
+    border-color: transparent;
+    border-radius: 10px;
+
+    .card-body{
+        background-color: #b3cef747;
+        border-radius: 5px;
+        padding: 30px 20px;
+        
+
+        .mat-form-field{
+            width: 100%;
+        }
+
+        .mat-flat-button{
+            float: right;
+        }
+    }
+}
