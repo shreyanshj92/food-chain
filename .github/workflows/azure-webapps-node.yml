@@ -20,10 +20,13 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
     - name: Install dependencies
       run: npm install
+      
     - name: Install @zxing/library
       run: npm i @zxing/library
+      
     - name: Install @zxing/browser
       run: npm i @zxing/browser  
+      
     - name: Build
       run: npm run build --prod
     - name: 'Deploy to Azure WebApp'
