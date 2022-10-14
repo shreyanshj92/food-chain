@@ -1,14 +1,38 @@
 <div class="row">
-    <div class="col-md-6"></div>
-<div class="col-md-4 offset-md-1 mt-5">
+  <div class="col-md-6"></div>
+  <div class="col-md-4 offset-md-1 mt-5">
     <div class="card">
-        <div class="card-body">
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
+      <div class="card-body">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="username"
+              placeholder="Username"
+            />
+            <mat-error *ngIf="f['username'].errors?.['required']">
+              Username is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="password"
+              placeholder="Password"
+            />
+            <mat-error *ngIf="f['password'].errors?.['required']">
+              Password is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <!-- <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" />
                     <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
-                        <div *ngIf="f['username'].errors['required']">Username is required</div>
+                        <div *ngIf="f['password'].errors['required']">Username is required</div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -17,14 +41,23 @@
                     <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
                         <div *ngIf="f['password'].errors['required']">Password is required</div>
                     </div>
-                </div>
-                <button [disabled]="loading" class="btn btn-primary mt-3" >
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                    Login
-                </button>
-                <div *ngIf="validationMessage" class="alert alert-danger mt-3 mb-0">{{validationMessage}}</div>
-            </form>
-        </div>
+                </div> -->
+          <button
+            mat-flat-button
+            [disabled]="loading"
+            class="btn btn-primary mt-3"
+          >
+            <span
+              *ngIf="loading"
+              class="spinner-border spinner-border-sm mr-1"
+            ></span>
+            Login
+          </button>
+          <div *ngIf="validationMessage" class="alert alert-danger mt-3 mb-0">
+            {{ validationMessage }}
+          </div>
+        </form>
+      </div>
     </div>
-</div>
+  </div>
 </div>

@@ -1,6 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from './shared/auth.guard';
+import { AuthGuard } from './shared/guards/auth.guard';
 import { LoginComponent } from './view/login/login.component';
 import { NgModule } from '@angular/core';
 import { QrCodeReaderComponent } from './shared/components/qr-code-reader/qr-code-reader.component';
