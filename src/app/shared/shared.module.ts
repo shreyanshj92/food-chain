@@ -1,5 +1,7 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormGeneratorComponent } from './components/form-generator/form-generator.component';
 import { MaterialModule } from './mterial.module';
 import { NgModule } from '@angular/core';
 import { QRCodeModule } from 'angularx-qrcode';
@@ -9,7 +11,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 @NgModule({
   declarations: [  
-    QrCodeGeneratorComponent, QrCodeReaderComponent
+    QrCodeGeneratorComponent, QrCodeReaderComponent, FormGeneratorComponent
   ],
   imports: [
   
@@ -17,7 +19,8 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     QRCodeModule,
     ZXingScannerModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
     
   ],
   providers: [],
