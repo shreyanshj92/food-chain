@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserComponent } from './user.component';
+import { ProcessFlowComponent } from './process-flow.component';
 
-describe('UserComponent', () => {
-  let component: UserComponent;
-  let fixture: ComponentFixture<UserComponent>;
+describe('ProcessFlowComponent', () => {
+  let component: ProcessFlowComponent;
+  let fixture: ComponentFixture<ProcessFlowComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserComponent ]
+      declarations: [ ProcessFlowComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(UserComponent);
+    fixture = TestBed.createComponent(ProcessFlowComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
