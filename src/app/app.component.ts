@@ -19,9 +19,22 @@ export class AppComponent {
     return this.authService.hasRole(Role.Admin);
   }
 
-  get isUser() {
-    return this.authService.hasRole(Role.User);
+  get isFarmer() {
+    return this.authService.hasRole(Role.Farmer);
   }
+
+  get isRetailer(){
+    return this.authService.hasRole(Role.Retailer);
+  }
+
+  get isSupplier(){
+    return this.authService.hasRole(Role.Supplier);
+  }
+
+  get isManufacturer(){
+    return this.authService.hasRole(Role.Manufacturer);
+  }
+
   logout() {
     this.authService.logout();
     this.router.navigate(['login']);
