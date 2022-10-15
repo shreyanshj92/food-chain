@@ -5,3 +5,10 @@ export const FIELD_TYPES = {
     dropDown: "DropDown",
     radioButton: "radioButton"
 }
+
+export const KEY_VALUE = {
+    id: "Id",
+    name:"Name",
+    progress:"Progress",
+    fruit:"Fruit"
+}
