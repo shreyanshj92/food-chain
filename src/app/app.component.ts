@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Food Processing Chain';
+  title = 'Food Tracker App';
   userDetails!: any;
   isSannerVisible:boolean=false
 
@@ -30,7 +30,6 @@ export class AppComponent implements OnInit {
   }
 
   get isFarmer() {
-    console.log("isFarmer: ",this.authService.hasRole(Role.Farmer))
     return this.authService.hasRole(Role.Farmer);
   }
 
@@ -44,6 +43,10 @@ export class AppComponent implements OnInit {
 
   get isManufacturer() {
     return this.authService.hasRole(Role.Manufacturer);
+  }
+
+  get isGuest() {
+    return this.authService.hasRole(Role.Guest);
   }
 
   logout() {
