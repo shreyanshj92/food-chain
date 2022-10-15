@@ -4,5 +4,6 @@ export enum Role {
   Supplier = 'SUPPLIER',
   Manufacturer = 'MANUFACTURER',
   Retailer = 'RETAILER',
-  Distributor= 'DISTRIBUTOR'
+  Distributor= 'DISTRIBUTOR',
+  Guest = 'GUEST'
 }

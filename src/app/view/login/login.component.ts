@@ -1,19 +1,23 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription, take } from 'rxjs';
 
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { Role } from 'src/app/shared/models/roles';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup = new FormGroup({});
   loading = false;
   submitted = false;
+  isGuestUser = false;
   validationMessage = '';
+  authSubscription!: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,6 +39,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.isGuestUser = false;
     this.submitted = true;
 
     // stop here if form is invalid
@@ -49,18 +54,42 @@ export class LoginComponent implements OnInit {
       this.f['password'].value
     );
 
-    this.authenticationService.user.subscribe((userDetails: any) => {
-      if (userDetails) {
-        if (!!userDetails?.role) {
-          
-          const navigationPath = userDetails?.role?.toLowerCase();
-          this.router.navigate([`/farmer`]);
+    this.authSubscription = this.authenticationService.user
+      .pipe(take(1))
+      .subscribe((userDetails: any) => {
+        if (userDetails) {
+          if (!!userDetails?.role) {
+            const navigationPath = userDetails?.role?.toLowerCase();
+            this.router.navigate([`/${navigationPath}`]);
+          }
+          this.validationMessage = '';
+        } else {
+          this.validationMessage = 'Enter Valid credentials';
         }
-        this.validationMessage = '';
-      } else {
-        this.validationMessage = 'Enter Valid credentials';
-      }
-    });
+      });
     this.loading = false;
+  }
+
+  onGuestLogin(): void {
+    this.isGuestUser = true;
+    this.authenticationService.login(
+      "Guest",
+      "test"
+    );
+
+    this.authSubscription = this.authenticationService.user
+      .pipe(take(1))
+      .subscribe((userDetails: any) => {
+        console.log(userDetails)
+        if (userDetails) {
+          if (userDetails?.role === Role.Guest) {
+            this.router.navigate(['/scanner']);
+          }
+        }
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.authSubscription.unsubscribe();
   }
 }

@@ -1,11 +1,13 @@
-.row {
+.product-details {
+  .row {
     background-color: #b3cef747;
     padding: 30px 20px;
     border-radius: 5px;
 
     .col-md-6 {
-        .mat-form-field{
-            width: 100%;
-        }
+      .mat-form-field {
+        width: 100%;
+      }
     }
+  }
 }
