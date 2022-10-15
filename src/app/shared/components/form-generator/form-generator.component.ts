@@ -19,7 +19,7 @@ export class FormGeneratorComponent implements OnInit {
   dynamicForm: FormGroup = this.fb.group({});
   fieldTypes = FIELD_TYPES;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.createForm();

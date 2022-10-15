@@ -31,12 +31,13 @@ export class AuthenticationService {
       password: password,
     };
     this.http.post(url, data).subscribe((jwtResponse: any) => {
-      this.token = jwtResponse;
+      this.token = jwtResponse.token;
       this.userDetail = this.parseJwt(jwtResponse.token);
       console.log(JSON.stringify(this.userDetail));
       this.user.next(this.userDetail);
       return this.userDetail;
     });
+    
   }
 
   logout() {
