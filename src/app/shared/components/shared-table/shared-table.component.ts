@@ -22,7 +22,8 @@ export class SharedTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  @Input() keyValuePairs = KEY_VALUE;
+  @Input() keyValuePairs:any = KEY_VALUE;
+
   @Input() displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
 
   private _data = new BehaviorSubject<any>([]);
