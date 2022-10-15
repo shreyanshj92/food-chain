@@ -38,6 +38,9 @@ export class QrCodeReaderComponent implements OnInit {
 
   onCodeResult(resultString: string) {
     this.qrResultString = resultString;
+  }
+
+  onCapturingQRCode(): void {
     this.onCaptureBatchCode.emit(this.qrResultString);
   }
 }

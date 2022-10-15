@@ -14,7 +14,7 @@
     <button mat-raised-button (click)="onDirectSearch()">Submit</button>
 
     <div class="scanner">
-      <div *ngIf="isReadyToScaneCode">
+      <div *ngIf="isReadyToScaneCode && !qrResultString">
         Capture your QR code:
 
         <zxing-scanner
@@ -23,12 +23,13 @@
           [formats]="allowedFormats"
         ></zxing-scanner>
 
-        <section class="results" *ngIf="qrResultString">
-          <div>
+        <section  *ngIf="qrResultString">
+          <div class="results">
             <small>Result</small>
             <strong>{{ qrResultString }}</strong>
-            <button mat-icon-button (click)="clearResult()">&times;</button>
           </div>
+          <button mat-stroked-button (click)="onCapturingQRCode()">Fetch Product Detail</button>
+          <button mat-stroked-button (click)="clearResult()">Clear</button>
         </section>
       </div>
     </div>

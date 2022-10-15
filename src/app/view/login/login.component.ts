@@ -80,7 +80,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authSubscription = this.authenticationService.user
       .pipe(take(1))
       .subscribe((userDetails: any) => {
-        console.log(userDetails)
         if (userDetails) {
           if (userDetails?.role === Role.Guest) {
             this.router.navigate(['/scanner']);

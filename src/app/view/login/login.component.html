@@ -19,7 +19,7 @@
           <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
             <input
-              type="text"
+              type="password"
               matInput
               formControlName="password"
               placeholder="Password"
@@ -40,15 +40,15 @@
             ></span>
             Login
           </button>
-          
+
           <div *ngIf="validationMessage" class="text-danger mt-3">
             {{ validationMessage }}
           </div>
         </form>
-        
+
           <button
           mat-flat-button
-          class="btn btn-primary mt-3"
+          class="btn btn-secondary mt-3"
           (click)="onGuestLogin()"
         >
           Login as guest
