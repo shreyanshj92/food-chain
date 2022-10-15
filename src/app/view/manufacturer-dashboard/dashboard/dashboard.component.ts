@@ -1,21 +1,60 @@
 import { Component, OnInit } from '@angular/core';
 
-import { KEY_VALUE } from 'src/app/shared/constants/constant';
+import { EventDetails } from 'src/app/shared/interfaces/event-details';
+import { FoodChainService } from 'src/app/shared/services/food-chain.service';
+import { KEY_VALUE_PROCESS_LIST } from 'src/app/shared/constants/constant';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+  batchListData: EventDetails[] = [];
+  keyValuePairs = KEY_VALUE_PROCESS_LIST;
+  displayedColumns: string[] = [
+    'eventId',
+    'eventType',
+    'referenceId',
+    'batchId',
+    'packageID',
+    'eventDatetime',
+  ];
+  isProductDetailScannerEnabled = false;
+  isProcessFlowEnabled = false;
+  isProcessListEnabled = false;
 
-  data = [{"id":"1","name":"Jasper V.","progress":"87","fruit":"lychee"},{"id":"2","name":"Cora M.","progress":"17","fruit":"lime"},{"id":"3","name":"Jasper O.","progress":"60","fruit":"mango"},{"id":"4","name":"Amelia A.","progress":"21","fruit":"pomegranate"},{"id":"5","name":"Theodore I.","progress":"79","fruit":"mango"},{"id":"6","name":"Theodore A.","progress":"21","fruit":"peach"},{"id":"7","name":"Charlotte A.","progress":"70","fruit":"kiwi"},{"id":"8","name":"Theodore A.","progress":"82","fruit":"pineapple"},{"id":"9","name":"Levi T.","progress":"98","fruit":"lime"},{"id":"10","name":"Elizabeth A.","progress":"51","fruit":"pomegranate"},{"id":"11","name":"Thomas M.","progress":"100","fruit":"pomegranate"},{"id":"12","name":"Charlotte M.","progress":"60","fruit":"lime"}];
+  constructor(private foodChainService: FoodChainService) {}
 
- keyValuePairs = KEY_VALUE;
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  onSubmit(formData: any): void {
+    console.log(formData);
   }
 
+  onChangeSelection(type: string): void {
+    this.isProductDetailScannerEnabled = false;
+    this.isProcessFlowEnabled = false;
+    this.isProcessListEnabled = false;
+    if (type === 'scan') {
+      this.isProductDetailScannerEnabled = true;
+    } else if (type === 'flow') {
+      this.isProcessFlowEnabled = true;
+    } else {
+      this.isProcessListEnabled = true;
+      this.getProcessList();
+    }
+  }
+
+  getProcessList(): void {
+    this.foodChainService
+      .getBatchIdList()
+      .subscribe((batchList: EventDetails[]) => {
+        this.batchListData = batchList;
+      });
+  }
+
+  onSelectedRecord(selectedRecord: any): void {
+    console.log(selectedRecord);
+  }
 }
