@@ -23,7 +23,6 @@ export class FormGeneratorComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
-    console.log(this.formFields)
   }
 
   createForm() {

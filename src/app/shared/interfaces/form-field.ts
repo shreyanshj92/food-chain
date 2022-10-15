@@ -5,6 +5,7 @@ export interface FormField {
     fieldType: string;
     required: boolean;
     options: string[];
+    disabled: boolean;
 }
 
 export interface GeneratedFormOutput {

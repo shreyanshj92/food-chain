@@ -38,14 +38,14 @@ export class MaterialCollectionComponent implements OnInit {
 
   generateForm() {
     for (const [key, value] of Object.entries(this.materialFormFields)) {
-      console.log(`key-${key}| value-${value} |typeofVAl ${typeof value}`);
       const field: FormField = {
         fieldLabel: key,
         placeHolder: '',
         userAnswer: '',
         fieldType: '',
         required: false,
-        options: []
+        options: [],
+        disabled: false
       }
       switch (typeof value) {
         case 'string':
@@ -60,6 +60,13 @@ export class MaterialCollectionComponent implements OnInit {
           field.fieldType = 'date';
           break;
           
+        default:
+          break;
+      }
+      switch(key) {
+        case 'formerId':
+          field.disabled=true;
+          break;
         default:
           break;
       }
@@ -84,8 +91,18 @@ export class MaterialCollectionComponent implements OnInit {
       "driverContactNumber": "7890123456",
       "note": "xyz xyz"
     }
-    console.log(this.fcs.saveMaterialFormDetails(obj));
+    console.log('test save material')
+    this.fcs.saveMaterialFormDetails(obj).subscribe(data=> {
+      console.log(data);
+    });
     
+  }
+
+  testGetAPI() {
+    this.fcs.getBatchId().subscribe(data => {
+      console.log("get api batchID test");
+      console.log(data);
+    })
   }
 
 }
