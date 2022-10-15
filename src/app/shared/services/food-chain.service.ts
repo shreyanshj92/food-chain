@@ -17,7 +17,7 @@ export class FoodChainService {
     'Authorization': `Bearer ${this.token}`
   })
   baseURL = "https://foodtrackerrcmmveuapi-foodtrackerrcmmv.azuremicroservices.io";
-
+  //baseURL = "http://localhost:8080"
   constructor(private http: HttpClient, private auth: AuthenticationService) {
     if(this.auth.isAuthorized()) {
       this.token = this.auth.getUserToken();
@@ -53,5 +53,7 @@ export class FoodChainService {
     const url = `${this.baseURL}/getBatchId`;
     return this.http.get<EventDetails[]>(url);
   }
+
+  
   
 }

@@ -31,13 +31,10 @@ export class AuthenticationService {
       password: password,
     };
     this.http.post(url, data).subscribe((jwtResponse: any) => {
-      this.token = jwtResponse;
+      this.token = jwtResponse.token;
       this.userDetail = this.parseJwt(jwtResponse.token);
-      // TODO to be removed later
-      this.userDetail = {"role":"Manufacturer","sub":"farmer_sanjay","exp":1665813752,"iat":1665795752};
-      this.user.next(this.userDetail);
-      // 
       console.log(this.userDetail);
+      this.user.next(this.userDetail);
       return this.userDetail;
     });
     
