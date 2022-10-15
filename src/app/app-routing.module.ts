@@ -62,6 +62,7 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
+  // TODO - remove path later (only for testing)
   {
     path: 'materialFormTest',
     component: MaterialCollectionComponent

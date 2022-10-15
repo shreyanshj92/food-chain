@@ -55,8 +55,6 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/admin']);
         } else if (userDetails?.role === 'User') {
           this.router.navigate(['/user']);
-        } else if (userDetails?.role === 'Manufacturer') {
-          this.router.navigate(['/materialFormTest']);
         }
         this.validationMessage = '';
       } else {

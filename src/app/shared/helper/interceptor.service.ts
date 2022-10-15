@@ -25,8 +25,6 @@ export class InterceptorService implements HttpInterceptor {
       }
     });
     this.token = this.authService.getUserToken();
-    console.log('from interceptor');
-    console.log(this.token);
     if (this.token || this.skipInterceptor) {
       const tokenizedReq = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + this.token) });
       return next.handle(tokenizedReq).pipe(map((event: HttpEvent<any>) => {

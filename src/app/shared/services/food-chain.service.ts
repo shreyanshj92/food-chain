@@ -12,17 +12,11 @@ import { UserDetails } from '../interfaces/user-details';
 })
 export class FoodChainService {
   
-  token: string = "";
-  httpHeaders = new HttpHeaders({
-    'Authorization': `Bearer ${this.token}`
-  })
+ 
   baseURL = "https://foodtrackerrcmmveuapi-foodtrackerrcmmv.azuremicroservices.io";
   //baseURL = "http://localhost:8080"
-  constructor(private http: HttpClient, private auth: AuthenticationService) {
-    if(this.auth.isAuthorized()) {
-      this.token = this.auth.getUserToken();
-    }
-  }
+  
+  constructor(private http: HttpClient, private auth: AuthenticationService) {}
 
   // POST API to save the material collection form details, used by supplier. 
   saveMaterialFormDetails(materialFormDetails: MaterialCollectionForm): Observable<any> {
