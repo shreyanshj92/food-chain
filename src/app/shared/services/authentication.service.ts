@@ -2,6 +2,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { LOGIN_CREDENTIALS } from '../constants/constant';
 import { Role } from '../models/roles';
 
 @Injectable({
@@ -9,8 +10,9 @@ import { Role } from '../models/roles';
 })
 export class AuthenticationService {
   userDetail!: any;
-  token!:string;
+  token!: string;
   user: any = new BehaviorSubject({});
+  credentials = LOGIN_CREDENTIALS;
 
   constructor(private http: HttpClient) {}
 
@@ -19,7 +21,8 @@ export class AuthenticationService {
   }
 
   hasRole(role: Role) {
-    return this.isAuthorized() && this.userDetail.role === role;
+    console.log("role check: ", this.userDetail?.role === role)
+    return this.isAuthorized() && this.userDetail?.role === role;
   }
 
   login(userName: string, password: string) {
@@ -30,14 +33,19 @@ export class AuthenticationService {
       username: userName,
       password: password,
     };
-    this.http.post(url, data).subscribe((jwtResponse: any) => {
-      this.token = jwtResponse.token;
-      this.userDetail = this.parseJwt(jwtResponse.token);
-      console.log(JSON.stringify(this.userDetail));
-      this.user.next(this.userDetail);
-      return this.userDetail;
-    });
+    // this.http.post(url, data).subscribe((jwtResponse: any) => {
+    //   this.token = jwtResponse.token;
+    //   this.userDetail = this.parseJwt(jwtResponse.token);
+    //   this.user.next(this.userDetail);
+    //   return this.userDetail;
+    // });
     
+    // TODO: Hardcoded credentials
+    this.userDetail = this.credentials.filter(
+      (cred) => cred.userName === userName
+    )[0];
+    this.user.next(this.userDetail);
+    return this.userDetail;
   }
 
   logout() {
@@ -45,7 +53,7 @@ export class AuthenticationService {
     this.user.next(null);
   }
 
-  getUserToken(): string{
+  getUserToken(): string {
     return this.token;
   }
 

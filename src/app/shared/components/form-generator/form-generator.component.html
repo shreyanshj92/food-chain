@@ -34,26 +34,7 @@
             
                 </div>
             </div>
-            <button mat-flat-button class="btn btn-primary" (click)="onSave()">Save</button>
+            <button mat-flat-button class="btn btn-primary" *ngIf="isButtonVisible" (click)="onSave()">Save</button>
         </div>
     </div>
-    <mat-form-field appearance="outline">
-        <mat-label>Date</mat-label>
-        
-        <input matInput [matDatepicker]="picker4" placeholder="Choose a date">
-        <mat-datepicker-toggle matPrefix [for]="picker4"></mat-datepicker-toggle>
-        <mat-datepicker #picker4></mat-datepicker>
-
-      </mat-form-field>
-   
-
-    <!-- fomr
-    {{dynamicForm.value | json}}
-    
-
-    data
-    {{formFields | json}}
-
-    name 
-    {{formName | json}} -->
 </form>
