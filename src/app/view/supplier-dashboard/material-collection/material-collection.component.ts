@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { FoodChainService } from './../../../shared/services/food-chain.service';
 import { FormField } from 'src/app/shared/interfaces/form-field';
 import { GeneratedFormOutput } from './../../../shared/interfaces/form-field';
 import { MaterialCollectionForm } from 'src/app/shared/interfaces/material-collection-form';
+import { UserDetails } from 'src/app/shared/interfaces/user-details';
 
 @Component({
   selector: 'app-material-collection',
@@ -11,30 +13,39 @@ import { MaterialCollectionForm } from 'src/app/shared/interfaces/material-colle
   styleUrls: ['./material-collection.component.scss']
 })
 export class MaterialCollectionComponent implements OnInit {
+  @Input() farmerDetails!:UserDetails;
+  supplierDetails: any;
 
-  materialFormFields: MaterialCollectionForm = {
-    formerId: 0,
-    materialName: '',
-    quantity: 0,
-    packageDate: new Date(),
-    dispatchDate: new Date(),
-    fleetId: '',
-    supplierId: 0,
-    vehicleNumber: '',
-    fromLocation: '',
-    toLocation: '',
-    journeyStartDate: new Date(),
-    driverName: '',
-    driverContactNumber: '',
-    note: ''
-  }
+  materialFormFields: MaterialCollectionForm; 
 
   formDynamicJSON: FormField[] = [];
 
-  constructor(private fcs: FoodChainService) { }
+  constructor(private fcs: FoodChainService, private authService: AuthenticationService) { 
+    this.materialFormFields = {
+      formerId: this.farmerDetails?.userId | 0,
+      materialName: '',
+      quantity: 0,
+      packageDate: new Date(),
+      dispatchDate: new Date(),
+      fleetId: '',
+      supplierId: this.supplierDetails?.id | 0,
+      vehicleNumber: '',
+      fromLocation: '',
+      toLocation: '',
+      journeyStartDate: new Date(),
+      driverName: '',
+      driverContactNumber: '',
+      note: ''
+    }
+  }
 
   ngOnInit(): void {
     this.generateForm();
+    this.authService.user.subscribe((loggedInUser:any) => {
+      if(loggedInUser.role == 'SUPPLIER') {
+        this.supplierDetails = loggedInUser;
+      }
+    })
   }
 
   generateForm() {
@@ -66,6 +77,9 @@ export class MaterialCollectionComponent implements OnInit {
       }
       switch(key) {
         case 'formerId':
+          field.disabled=true;
+          break;
+        case 'supplierId':
           field.disabled=true;
           break;
         default:

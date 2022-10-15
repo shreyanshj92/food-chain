@@ -7,25 +7,25 @@
                         <mat-label>{{field.fieldLabel}}</mat-label>
             
                     <div *ngIf="field.fieldType == 'text'">
-                            <input matInput [id]="field.fieldLabel" type="text"
+                            <input matInput [id]="field.fieldLabel" type="text" [disabled]="field.disabled"
                             [formControlName]="field.fieldLabel" />
                         
                     </div>
                     <div *ngIf="field.fieldType == 'number'">
-                        <input matInput [id]="field.fieldLabel" type="number"
+                        <input matInput [id]="field.fieldLabel" type="number" [disabled]="field.disabled"
                         [formControlName]="field.fieldLabel" />
                     
                     </div>
                     <div *ngIf="field.fieldType == 'textArea'">
-                            <textarea matInput [id]="field.fieldLabel" [formControlName]="field.fieldLabel"></textarea>
+                            <textarea matInput [id]="field.fieldLabel" [disabled]="field.disabled" [formControlName]="field.fieldLabel"></textarea>
                     </div>
                     <div *ngIf="field.fieldType == 'dropDown'">
-                            <mat-select [id]="field.fieldLabel" [formControlName]="field.fieldLabel">
+                            <mat-select [disabled]="field.disabled" [id]="field.fieldLabel" [formControlName]="field.fieldLabel">
                                 <mat-option *ngFor="let op of field.options" [value]="op">{{ op }}</mat-option>
                             </mat-select>
                     </div>
                     <ng-container *ngIf="field.fieldType == 'date'">
-                        <input matInput [matDatepicker]="picker" [formControlName]="field.fieldLabel" (dateInput)="dateEntered(field.fieldLabel)">
+                        <input [disabled]="field.disabled" matInput [matDatepicker]="picker" [formControlName]="field.fieldLabel" (dateInput)="dateEntered(field.fieldLabel)">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </ng-container>

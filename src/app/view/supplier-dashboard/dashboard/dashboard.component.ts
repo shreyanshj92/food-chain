@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Address } from './../../../shared/interfaces/user-details';
 import { FARMER_KEY_VALUE } from 'src/app/shared/constants/constant';
 import { FoodChainService } from 'src/app/shared/services/food-chain.service';
 import { UserDetails } from 'src/app/shared/interfaces/user-details';
@@ -13,6 +12,8 @@ import { UserDetails } from 'src/app/shared/interfaces/user-details';
 export class DashboardComponent implements OnInit {
  
 
+  isFarmerSelected: boolean = false;
+  selectedFarmer: UserDetails = {} as UserDetails;
   farmersList: UserDetails[]|undefined;
   displayColumns = [
     "username",
@@ -58,9 +59,10 @@ export class DashboardComponent implements OnInit {
     console.log(this.keyValuePairsData)
   }
 
-  getFarmerDetails(farmDetails:UserDetails) {
-    if(farmDetails) {
-    }
+  farmerSelect(farmer:UserDetails) {
+    console.log(farmer);
+    this.selectedFarmer = farmer;
+    this.isFarmerSelected = true;
   }
 
 }
