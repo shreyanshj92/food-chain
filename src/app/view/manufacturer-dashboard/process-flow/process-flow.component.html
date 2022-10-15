@@ -1,5 +1,5 @@
 <mat-stepper labelPosition="bottom" #stepper>
-  <mat-step [stepControl]="receivedFormGroup">
+  <mat-step [stepControl]="receivedFormGroup" [completed]="step1Complete">
     <form [formGroup]="receivedFormGroup">
       <ng-template matStepLabel>Received</ng-template>
       <app-received [receivedFormGroup]="receivedFormGroup"></app-received>
@@ -8,7 +8,7 @@
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="qualityCheckFormGroup" optional>
+  <mat-step [stepControl]="qualityCheckFormGroup" [completed]="step2Complete">
     <form [formGroup]="qualityCheckFormGroup">
       <ng-template matStepLabel>Quality Check</ng-template>
       <app-quality-check
@@ -21,7 +21,7 @@
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="cleanedFormGroup" optional>
+  <mat-step [stepControl]="cleanedFormGroup" [completed]="step3Complete">
     <form [formGroup]="cleanedFormGroup">
       <ng-template matStepLabel>Cleaned</ng-template>
       <app-cleaned [cleanedFormGroup]="cleanedFormGroup"></app-cleaned>
@@ -32,7 +32,7 @@
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="processedFormGroup" optional>
+  <mat-step [stepControl]="processedFormGroup" [completed]="step4Complete">
     <form [formGroup]="processedFormGroup">
       <ng-template matStepLabel>Processed</ng-template>
       <app-processed [processedFormGroup]="processedFormGroup"></app-processed>
