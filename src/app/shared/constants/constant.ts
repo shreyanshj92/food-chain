@@ -6,11 +6,13 @@ export const FIELD_TYPES = {
   radioButton: 'radioButton',
 };
 
-export const KEY_VALUE = {
-  id: 'Id',
-  name: 'Name',
-  progress: 'Progress',
-  fruit: 'Fruit',
+export const KEY_VALUE_PROCESS_LIST = {
+  eventId: 'Event Id',
+  eventType: 'Event Type',
+  referenceId: 'Reference Id',
+  batchId: 'Batch Id',
+  packageID: 'Package ID',
+  eventDatetime: 'Event Date Time',
 };
 
 export const LOGIN_CREDENTIALS = [
@@ -51,4 +53,12 @@ export const LOGIN_CREDENTIALS = [
   },
 ];
 
-export const EventTypes =["Collected", "Received", "QualityCheck", "Cleaned", "Processed", "Dispatched", "RetailerReceived"]
+export const EventTypes = [
+  'Collected',
+  'Received',
+  'QualityCheck',
+  'Cleaned',
+  'Processed',
+  'Dispatched',
+  'RetailerReceived',
+];
