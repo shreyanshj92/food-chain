@@ -68,6 +68,7 @@ p {
   max-width: 960px;
   flex-direction: column;
   align-items: center;
+  
 }
 svg.material-icons {
   height: 24px;
@@ -310,11 +311,15 @@ header {
     .nav-link:hover {
       color: #97c3ef !important;
     }
-	    
-	.nav-link.active{
-		color: #97c3ef !important;
-		text-decoration: underline;
-		font-weight: 600;
-	}
+
+    .nav-link.active {
+      color: #97c3ef !important;
+      text-decoration: underline;
+      font-weight: 600;
+    }
+    
+  }
+  .navbar-text {
+    background: #73e173e0;
   }
 }
