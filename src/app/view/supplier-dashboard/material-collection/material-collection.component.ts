@@ -90,41 +90,4 @@ export class MaterialCollectionComponent implements OnInit {
     }
   }
 
-  testSave() {
-    const obj: MaterialCollectionForm = {
-      "formerId": 3,
-      "materialName": "Mango",
-      "quantity": 100,
-      "packageDate": new Date("2022-10-14"),
-      "dispatchDate": new Date("2022-10-14"),
-      "fleetId": "UA001",
-      "supplierId": 5,
-      "vehicleNumber": "KA-05-AQ-1776",
-      "fromLocation": "Davanagere",
-      "toLocation": "Bengaluru",
-      "journeyStartDate": new Date("2022-10-14"),
-      "driverName": "Krishna",
-      "driverContactNumber": "7890123456",
-      "note": "xyz xyz"
-    }
-    console.log('test save material')
-    this.fcs.saveMaterialFormDetails(obj).subscribe((data: any)=> {
-      console.log(data);
-    });
-    
-  }
-
-  testGetAPI() {
-    this.fcs.getBatchIdList().subscribe((data:any) => {
-      console.log("get api batchID test");
-      console.log(data);
-    })
-  }
-
-  testRAPI() {
-    this.fcs.TestApi().subscribe(d=> {
-      console.log(d);
-    })
-  }
-
 }

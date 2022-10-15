@@ -26,6 +26,9 @@ const routes: Routes = [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
+  ],
+  exports: [
+    MaterialCollectionComponent
   ]
 })
 export class SupplierDashboardModule { }

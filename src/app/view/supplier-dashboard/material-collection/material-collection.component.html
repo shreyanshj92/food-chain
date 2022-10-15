@@ -1,6 +1,2 @@
 <h1>Material Collections</h1>
-<app-form-generator (formDetailsOutput)="onSave($event)" [formName]="'material_collection_form'" [formFields]="formDynamicJSON"></app-form-generator>
-<button (click)="testSave()">Test save</button>
-<button (click)="testGetAPI()">Test get api</button>
-
-<button (click)="testRAPI()">Test rohit API</button>
+<app-form-generator (formDetailsOutput)="onSave($event)" [isButtonVisible]="true" [formName]="'material_collection_form'" [formFields]="formDynamicJSON"></app-form-generator>
