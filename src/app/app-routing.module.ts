@@ -2,6 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './shared/guards/auth.guard';
 import { LoginComponent } from './view/login/login.component';
+import { MaterialCollectionComponent } from './view/supplier-dashboard/material-collection/material-collection.component';
 import { NgModule } from '@angular/core';
 import { QrCodeReaderComponent } from './shared/components/qr-code-reader/qr-code-reader.component';
 import { Role } from './shared/models/roles';
@@ -63,6 +64,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'materialFormTest',
+    component: MaterialCollectionComponent
   },
 
   // otherwise redirect to home

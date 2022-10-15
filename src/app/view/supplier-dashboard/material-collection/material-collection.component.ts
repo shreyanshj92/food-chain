@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { FoodChainService } from './../../../shared/services/food-chain.service';
 import { FormField } from 'src/app/shared/interfaces/form-field';
 import { MaterialCollectionForm } from 'src/app/shared/interfaces/material-collection-form';
 
@@ -29,7 +30,7 @@ export class MaterialCollectionComponent implements OnInit {
 
   formDynamicJSON: FormField[] = [];
 
-  constructor() { }
+  constructor(private fcs: FoodChainService) { }
 
   ngOnInit(): void {
     this.generateForm();
@@ -64,6 +65,27 @@ export class MaterialCollectionComponent implements OnInit {
       }
       this.formDynamicJSON.push(field);
     }
+  }
+
+  testSave() {
+    const obj: MaterialCollectionForm = {
+      "formerId": 3,
+      "materialName": "Mango",
+      "quantity": 100,
+      "packageDate": new Date("2022-10-14"),
+      "dispatchDate": new Date("2022-10-14"),
+      "fleetId": "UA001",
+      "supplierId": 5,
+      "vehicleNumber": "KA-05-AQ-1776",
+      "fromLocation": "Davanagere",
+      "toLocation": "Bengaluru",
+      "journeyStartDate": new Date("2022-10-14"),
+      "driverName": "Krishna",
+      "driverContactNumber": "7890123456",
+      "note": "xyz xyz"
+    }
+    console.log(this.fcs.saveMaterialFormDetails(obj));
+    
   }
 
 }

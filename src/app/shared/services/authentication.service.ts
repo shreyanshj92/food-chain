@@ -33,10 +33,14 @@ export class AuthenticationService {
     this.http.post(url, data).subscribe((jwtResponse: any) => {
       this.token = jwtResponse;
       this.userDetail = this.parseJwt(jwtResponse.token);
-      console.log(this.userDetail);
+      // TODO to be removed later
+      this.userDetail = {"role":"Manufacturer","sub":"farmer_sanjay","exp":1665813752,"iat":1665795752};
       this.user.next(this.userDetail);
+      // 
+      console.log(this.userDetail);
       return this.userDetail;
     });
+    
   }
 
   logout() {
