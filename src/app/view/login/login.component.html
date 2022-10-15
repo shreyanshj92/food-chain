@@ -3,7 +3,7 @@
   <div class="col-md-4 offset-md-1 mt-5">
     <div class="card">
       <div class="card-body">
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="loginForm" novalidate>
           <mat-form-field appearance="outline">
             <mat-label>Username</mat-label>
             <input
@@ -12,7 +12,7 @@
               formControlName="username"
               placeholder="Username"
             />
-            <mat-error *ngIf="f['username'].errors?.['required']">
+            <mat-error *ngIf="f['username'].errors?.['required'] && !isGuestUser">
               Username is <strong>required</strong>
             </mat-error>
           </mat-form-field>
@@ -24,15 +24,15 @@
               formControlName="password"
               placeholder="Password"
             />
-            <mat-error *ngIf="f['password'].errors?.['required']">
+            <mat-error *ngIf="f['password'].errors?.['required'] && !isGuestUser">
               Password is <strong>required</strong>
             </mat-error>
           </mat-form-field>
-         
           <button
             mat-flat-button
             [disabled]="loading"
             class="btn btn-primary mt-3"
+            (click)="onSubmit()"
           >
             <span
               *ngIf="loading"
@@ -40,10 +40,19 @@
             ></span>
             Login
           </button>
+          
           <div *ngIf="validationMessage" class="text-danger mt-3">
             {{ validationMessage }}
           </div>
         </form>
+        
+          <button
+          mat-flat-button
+          class="btn btn-primary mt-3"
+          (click)="onGuestLogin()"
+        >
+          Login as guest
+        </button>
       </div>
     </div>
   </div>

@@ -5,7 +5,7 @@
     alt="Food Processing Chain Logo"
     src="../assets/icons/dip.png"
   />
-  <span>Food Processing Chain</span>
+  <span>Food Tracker App</span>
   <div class="spacer"></div>
   <header class="navbar navbar-expand">
     <ul class="navbar-nav mr-auto">
@@ -62,7 +62,7 @@
         >
       </li>
 
-      <li class="nav-item" *ngIf="isAuthorized">
+      <li class="nav-item" *ngIf="isGuest">
         <a
           class="nav-link"
           [routerLink]="['/scanner']"
