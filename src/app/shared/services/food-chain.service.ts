@@ -14,7 +14,6 @@ export class FoodChainService {
   
  
   baseURL = "https://foodtrackerrcmmveuapi-foodtrackerrcmmv.azuremicroservices.io";
-  //baseURL = "http://localhost:8080"
   
   constructor(private http: HttpClient, private auth: AuthenticationService) {}
 
@@ -37,17 +36,15 @@ export class FoodChainService {
   }
 
   //GET API to fetch the list of all Events along with their batchIds
-  getBatchId():Observable<EventDetails[]> {
+  getBatchIdList():Observable<EventDetails[]> {
     const url = `${this.baseURL}/getBatchId`;
     return this.http.get<EventDetails[]>(url);
   }
 
   //GET API to add Batch ID, used by barcode scanner
-  getProductDetails():Observable<EventDetails[]> {
-    const url = `${this.baseURL}/getBatchId`;
-    return this.http.get<EventDetails[]>(url);
+  getProductDetails(batchId: any):Observable<any> {
+    const url = `${this.baseURL}/getProductDetails/${batchId}`;
+    return this.http.get<any>(url);
   }
-
-  
   
 }

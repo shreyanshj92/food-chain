@@ -51,7 +51,6 @@ export class SharedTableComponent implements OnInit {
   getTableData() {
     this._data.subscribe(
       (response: any) => {
-        console.log(response);
         this.dataSource.data = response;
         this.rowPerPage = 10;
         this.pageIndex = 0;

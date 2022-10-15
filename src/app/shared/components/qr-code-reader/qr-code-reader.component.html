@@ -1,18 +1,36 @@
-<div class="scanner">
-  
-<button mat-raised-button type="button" (click)="isReadyToScaneCode = !isReadyToScaneCode">Scan QR Code</button>
-<div *ngIf="isReadyToScaneCode">
-  Capture your QR code:
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <mat-form-field appearance="outline">
+      <mat-label>Search</mat-label>
+      <input matInput [(ngModel)]="searchTerm" />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      type="button"
+      (click)="isReadyToScaneCode = !isReadyToScaneCode"
+    >
+      Scan QR Code
+    </button>
+    <button mat-raised-button (click)="onDirectSearch()">Submit</button>
 
-  <zxing-scanner start="true" (scanSuccess)="onCodeResult($event)" [formats]="allowedFormats"></zxing-scanner>
+    <div class="scanner">
+      <div *ngIf="isReadyToScaneCode">
+        Capture your QR code:
 
-  <section class="results" *ngIf="qrResultString">
-    <div>
-      <small>Result</small>
-      <strong>{{ qrResultString }}</strong>
-      <button mat-icon-button (click)="clearResult()">&times;</button>
+        <zxing-scanner
+          start="true"
+          (scanSuccess)="onCodeResult($event)"
+          [formats]="allowedFormats"
+        ></zxing-scanner>
+
+        <section class="results" *ngIf="qrResultString">
+          <div>
+            <small>Result</small>
+            <strong>{{ qrResultString }}</strong>
+            <button mat-icon-button (click)="clearResult()">&times;</button>
+          </div>
+        </section>
+      </div>
     </div>
-
-  </section>
-</div>
+  </div>
 </div>
