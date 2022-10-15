@@ -12,3 +12,33 @@ export const KEY_VALUE = {
     progress:"Progress",
     fruit:"Fruit"
 }
+
+export const LOGIN_CREDENTIALS = [{
+    userName: "Farmer",
+    role: "FARMER",
+    sub: "Farmer"
+},
+{
+    userName: "Retailer",
+    role: "RETAILER",
+    sub: "Retailer"
+},
+{
+    userName: "Manufacturer",
+    role: "MANUFACTURER",
+    sub: "Manufacturer"
+},
+{
+    userName: "Distributor",
+    role: "DISTRIBUTOR",
+    sub: "Distributor"
+},
+{
+    userName: "Supplier",
+    role: "SUPPLIER",
+    sub: "Supplier"
+},{
+    userName: "Admin",
+    role: "ADMIN",
+    sub: "Admin"
+}]

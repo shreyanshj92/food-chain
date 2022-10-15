@@ -51,10 +51,10 @@ export class LoginComponent implements OnInit {
 
     this.authenticationService.user.subscribe((userDetails: any) => {
       if (userDetails) {
-        if (userDetails?.role === 'Admin') {
-          this.router.navigate(['/admin']);
-        } else if (userDetails?.role === 'User') {
-          this.router.navigate(['/user']);
+        if (!!userDetails?.role) {
+          
+          const navigationPath = userDetails?.role?.toLowerCase();
+          this.router.navigate([`/farmer`]);
         }
         this.validationMessage = '';
       } else {

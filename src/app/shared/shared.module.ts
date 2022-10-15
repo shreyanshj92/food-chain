@@ -34,6 +34,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     QrCodeReaderComponent,
     MaterialModule,
     SharedTableComponent,
+    FormGeneratorComponent
   ],
 })
 export class SharedModule {}

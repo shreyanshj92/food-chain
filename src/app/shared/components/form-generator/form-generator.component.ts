@@ -14,12 +14,13 @@ import { Output } from '@angular/core';
 export class FormGeneratorComponent implements OnInit {
   @Output() formDetailsOutput: EventEmitter<GeneratedFormOutput> = new EventEmitter<GeneratedFormOutput>();
   @Input() formName!: string;
+  @Input() isButtonVisible: boolean = false;
   @Input() formFields!: FormField[];
  
   dynamicForm: FormGroup = this.fb.group({});
   fieldTypes = FIELD_TYPES;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.createForm();

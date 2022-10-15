@@ -2,6 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './shared/guards/auth.guard';
 import { LoginComponent } from './view/login/login.component';
+import { MaterialCollectionComponent } from './view/supplier-dashboard/material-collection/material-collection.component';
 import { NgModule } from '@angular/core';
 import { QrCodeReaderComponent } from './shared/components/qr-code-reader/qr-code-reader.component';
 import { Role } from './shared/models/roles';
@@ -9,7 +10,7 @@ import { Role } from './shared/models/roles';
 const routes: Routes = [
   {
     path: 'scanner',
-    component: QrCodeReaderComponent   
+    component: QrCodeReaderComponent
   },
   {
     path: 'admin',
@@ -27,19 +28,14 @@ const routes: Routes = [
       import('./view/farmer/farmer.module').then((m) => m.FarmerModule),
     data: { roles: [Role.Farmer] },
   },
-  // {
-  //   path: 'manufacturer',
-  //   canActivate: [AuthGuard],
-  //   canLoad: [AuthGuard],
-  //   loadChildren: () =>
-  //     import('./view/manufacturer-dashboard/manufacturer-dashboard.module').then((m) => m.ManufacturerDashboardModule),
-  //   data: { roles: [Role.Manufacturer] },
-  // },
+
   {
     path: 'manufacturer',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
     loadChildren: () =>
       import('./view/manufacturer-dashboard/manufacturer-dashboard.module').then((m) => m.ManufacturerDashboardModule),
-    
+    data: { roles: [Role.Manufacturer] },
   },
   {
     path: 'supplier',
