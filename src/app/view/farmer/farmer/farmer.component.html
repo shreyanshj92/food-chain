@@ -1,1 +1,247 @@
-<p>farmer works!</p>
+<div class="row">
+  <div *ngIf="!isSummeryAvailable">
+    <app-qr-code-reader
+      [isEditable]="isEditable"
+      (onCaptureBatchCode)="onCaptureProductDetails($event)"
+    ></app-qr-code-reader>
+  </div>
+
+  <div *ngIf="isSummeryAvailable">
+    <h1>Summery</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Batch Id</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Type here"
+            formControlName="batchId"
+            [disabled]="isEditable"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Search</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Type here"
+            formControlName="eventType"
+            [disabled]="isEditable"
+          />
+        </mat-form-field>
+      </div>
+      <!-- Farmer Info -->
+      <div formGroupName="formerDetails">
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Username</mat-label>
+              <input
+                matInput
+                type="text"
+                placeholder="Type here"
+                formControlName="username"
+                [disabled]="isEditable"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Phone</mat-label>
+              <input
+                matInput
+                type="text"
+                placeholder="Type here"
+                formControlName="phone"
+                [disabled]="isEditable"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                type="text"
+                placeholder="Type here"
+                formControlName="email"
+                [disabled]="isEditable"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Address</mat-label>
+              <input
+                matInput
+                type="text"
+                placeholder="Type here"
+                formControlName="address"
+                [disabled]="isEditable"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <!-- Supplier Info -->
+      <div formGroupName="supplierDetails">
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Username</mat-label>
+              <input
+                matInput
+                type="text"
+                placeholder="Type here"
+                formControlName="username"
+                [disabled]="isEditable"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Phone</mat-label>
+              <input
+                matInput
+                type="text"
+                placeholder="Type here"
+                formControlName="phone"
+                [disabled]="isEditable"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                type="text"
+                placeholder="Type here"
+                formControlName="email"
+                [disabled]="isEditable"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Address</mat-label>
+              <input
+                matInput
+                type="text"
+                placeholder="Type here"
+                formControlName="address"
+                [disabled]="isEditable"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Dispatch Date</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Type here"
+              formControlName="dispatchDate"
+              [disabled]="isEditable"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Event Date Time</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Type here"
+              formControlName="eventDateTime"
+              [disabled]="isEditable"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- Fleet Info -->
+      <div formGroupName="fleetDetails">
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Fleet Id</mat-label>
+              <input
+                matInput
+                type="text"
+                placeholder="Type here"
+                formControlName="fleetId"
+                [disabled]="isEditable"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>From Location</mat-label>
+              <input
+                matInput
+                type="text"
+                placeholder="Type here"
+                formControlName="fromLocation"
+                [disabled]="isEditable"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>To Location</mat-label>
+              <input
+                matInput
+                type="text"
+                placeholder="Type here"
+                formControlName="toLocation"
+                [disabled]="isEditable"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>DriverName</mat-label>
+              <input
+                matInput
+                type="text"
+                placeholder="Type here"
+                formControlName="driverName"
+                [disabled]="isEditable"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Driver Contact Number</mat-label>
+              <input
+                matInput
+                type="text"
+                placeholder="Type here"
+                formControlName="driverContactNumber"
+                [disabled]="isEditable"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Journey Start Date</mat-label>
+              <input
+                matInput
+                type="text"
+                placeholder="Type here"
+                formControlName="journeyStartDate"
+                [disabled]="isEditable"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

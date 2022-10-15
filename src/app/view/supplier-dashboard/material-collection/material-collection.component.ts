@@ -108,14 +108,14 @@ export class MaterialCollectionComponent implements OnInit {
       "note": "xyz xyz"
     }
     console.log('test save material')
-    this.fcs.saveMaterialFormDetails(obj).subscribe(data=> {
+    this.fcs.saveMaterialFormDetails(obj).subscribe((data: any)=> {
       console.log(data);
     });
     
   }
 
   testGetAPI() {
-    this.fcs.getBatchId().subscribe(data => {
+    this.fcs.getBatchIdList().subscribe((data:any) => {
       console.log("get api batchID test");
       console.log(data);
     })

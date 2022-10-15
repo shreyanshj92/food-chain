@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'Food Processing Chain';
   userDetails!: any;
+  isSannerVisible:boolean=false
 
   constructor(private router: Router, private authService: AuthenticationService) { }
 
@@ -29,6 +30,7 @@ export class AppComponent implements OnInit {
   }
 
   get isFarmer() {
+    console.log("isFarmer: ",this.authService.hasRole(Role.Farmer))
     return this.authService.hasRole(Role.Farmer);
   }
 
