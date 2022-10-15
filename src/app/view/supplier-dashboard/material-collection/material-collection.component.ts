@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { FoodChainService } from './../../../shared/services/food-chain.service';
 import { FormField } from 'src/app/shared/interfaces/form-field';
+import { GeneratedFormOutput } from './../../../shared/interfaces/form-field';
 import { MaterialCollectionForm } from 'src/app/shared/interfaces/material-collection-form';
 
 @Component({
@@ -74,6 +75,21 @@ export class MaterialCollectionComponent implements OnInit {
     }
   }
 
+  onSave(formOpEvent : GeneratedFormOutput) {
+    if(formOpEvent.formValue) {
+      this.fcs.saveMaterialFormDetails(formOpEvent.formValue).subscribe({
+        next: (data) => {
+          alert('Form saved');
+          console.log(data);
+        },
+        error: (err) => {
+          alert('ERROR Form not saved');
+          console.log(err);
+        }
+      })
+    }
+  }
+
   testSave() {
     const obj: MaterialCollectionForm = {
       "formerId": 3,
@@ -102,6 +118,12 @@ export class MaterialCollectionComponent implements OnInit {
     this.fcs.getBatchId().subscribe(data => {
       console.log("get api batchID test");
       console.log(data);
+    })
+  }
+
+  testRAPI() {
+    this.fcs.TestApi().subscribe(d=> {
+      console.log(d);
     })
   }
 
