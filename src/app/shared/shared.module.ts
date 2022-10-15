@@ -2,6 +2,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CommonModule } from '@angular/common';
 import { FormGeneratorComponent } from './components/form-generator/form-generator.component';
+import { FormReferenceComponent } from './components/form-reference/form-reference.component';
 import { KeyValuePipe } from './pipes/key-value.pipe';
 import { MaterialModule } from './mterial.module';
 import { NgModule } from '@angular/core';
@@ -17,7 +18,8 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     QrCodeReaderComponent,
     FormGeneratorComponent,
     SharedTableComponent,
-    KeyValuePipe
+    KeyValuePipe,
+    FormReferenceComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     QrCodeReaderComponent,
     MaterialModule,
     SharedTableComponent,
-    FormGeneratorComponent
+    FormGeneratorComponent,
+    FormReferenceComponent
   ],
 })
 export class SharedModule {}

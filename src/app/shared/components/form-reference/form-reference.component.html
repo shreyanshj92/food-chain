@@ -1,0 +1,43 @@
+<form [formGroup]="form" class="form-group">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 form-background">
+            <div class="row">
+                <mat-form-field class="mb-3 col-md-6 " appearance="outline">
+                    <mat-label>TEXT</mat-label>
+                    <input matInput type="text" placeholder="enter text" formControlName="text">
+                </mat-form-field>
+                <mat-form-field class="mb-3 col-md-6 " appearance="outline">
+                    <mat-label>TEXT-AREA</mat-label>
+                    <textarea matInput placeholder="enter textArea" formControlName="textArea"></textarea>
+                </mat-form-field>
+                <mat-form-field class="mb-3 col-md-6 " appearance="outline">
+                    <mat-label>NUMBER</mat-label>
+                    <input matInput type="number" placeholder="enter number" formControlName="number">
+                </mat-form-field>
+                <div class="mb-3 col-md-6 ">
+                    <mat-label>RADIO</mat-label>
+                    <mat-radio-group id="uniqid" name="uniq_name" aria-labelledby="example-radio-group-label"
+                        class="example-radio-group row" formControlName="radio">
+                        <mat-radio-button class="example-radio-button row mb-2" *ngFor="let obj of ['abc','def','ghi']"
+                            [value]="obj">
+                            {{obj}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <mat-form-field class="mb-3 col-md-6 " appearance="outline">
+                    <mat-label>DROP DOWN</mat-label>
+                    <mat-select formControlName="dropDown">
+                        <mat-option *ngFor="let obj of ['op1','op2','op3']" [value]="obj">{{obj}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="mb-3 col-md-6 " appearance="fill" appearance="outline">
+                    <mat-label>DATE</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="date">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</form>
