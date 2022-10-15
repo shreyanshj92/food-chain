@@ -21,7 +21,6 @@ export class AuthenticationService {
   }
 
   hasRole(role: Role) {
-    console.log("role check: ", this.userDetail?.role === role)
     return this.isAuthorized() && this.userDetail?.role === role;
   }
 
@@ -33,6 +32,7 @@ export class AuthenticationService {
       username: userName,
       password: password,
     };
+    console.log(userName,password)
     // this.http.post(url, data).subscribe((jwtResponse: any) => {
     //   this.token = jwtResponse.token;
     //   this.userDetail = this.parseJwt(jwtResponse.token);
@@ -44,6 +44,7 @@ export class AuthenticationService {
     this.userDetail = this.credentials.filter(
       (cred) => cred.userName === userName
     )[0];
+    console.log(this.userDetail)
     this.user.next(this.userDetail);
     return this.userDetail;
   }

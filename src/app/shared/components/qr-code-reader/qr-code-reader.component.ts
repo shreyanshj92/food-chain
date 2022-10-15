@@ -33,7 +33,6 @@ export class QrCodeReaderComponent implements OnInit {
   }
 
   onDirectSearch(): void {
-    this.searchTerm = '483e10f2-b417-44be-b93d-ef1b8cfeba13';
     this.onCaptureBatchCode.emit(this.searchTerm);
   }
 

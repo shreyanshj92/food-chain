@@ -4,8 +4,10 @@ import { CommonModule } from '@angular/common';
 import { FormGeneratorComponent } from './components/form-generator/form-generator.component';
 import { FormReferenceComponent } from './components/form-reference/form-reference.component';
 import { KeyValuePipe } from './pipes/key-value.pipe';
+import { LoadingComponent } from './components/loading/loading.component';
 import { MaterialModule } from './mterial.module';
 import { NgModule } from '@angular/core';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { QrCodeGeneratorComponent } from './components/qr-code-generator/qr-code-generator.component';
 import { QrCodeReaderComponent } from './components/qr-code-reader/qr-code-reader.component';
@@ -19,7 +21,9 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     FormGeneratorComponent,
     SharedTableComponent,
     KeyValuePipe,
-    FormReferenceComponent
+    FormReferenceComponent,
+    LoadingComponent,
+    ProductDetailComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +41,9 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     MaterialModule,
     SharedTableComponent,
     FormGeneratorComponent,
-    FormReferenceComponent
+    FormReferenceComponent,
+    LoadingComponent,
+    ProductDetailComponent
   ],
 })
 export class SharedModule {}
