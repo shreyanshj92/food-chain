@@ -33,7 +33,7 @@ export class AuthenticationService {
     this.http.post(url, data).subscribe((jwtResponse: any) => {
       this.token = jwtResponse.token;
       this.userDetail = this.parseJwt(jwtResponse.token);
-      console.log(this.userDetail);
+      console.log(JSON.stringify(this.userDetail));
       this.user.next(this.userDetail);
       return this.userDetail;
     });

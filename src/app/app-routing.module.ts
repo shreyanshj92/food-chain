@@ -10,16 +10,7 @@ import { Role } from './shared/models/roles';
 const routes: Routes = [
   {
     path: 'scanner',
-    component: QrCodeReaderComponent,
-    data: {
-      roles: [
-        Role.Farmer,
-        Role.Admin,
-        Role.Manufacturer,
-        Role.Retailer,
-        Role.Supplier,
-      ],
-    },
+    component: QrCodeReaderComponent   
   },
   {
     path: 'admin',
@@ -37,13 +28,19 @@ const routes: Routes = [
       import('./view/farmer/farmer.module').then((m) => m.FarmerModule),
     data: { roles: [Role.Farmer] },
   },
+  // {
+  //   path: 'manufacturer',
+  //   canActivate: [AuthGuard],
+  //   canLoad: [AuthGuard],
+  //   loadChildren: () =>
+  //     import('./view/manufacturer-dashboard/manufacturer-dashboard.module').then((m) => m.ManufacturerDashboardModule),
+  //   data: { roles: [Role.Manufacturer] },
+  // },
   {
     path: 'manufacturer',
-    canActivate: [AuthGuard],
-    canLoad: [AuthGuard],
     loadChildren: () =>
       import('./view/manufacturer-dashboard/manufacturer-dashboard.module').then((m) => m.ManufacturerDashboardModule),
-    data: { roles: [Role.Manufacturer] },
+    
   },
   {
     path: 'supplier',
