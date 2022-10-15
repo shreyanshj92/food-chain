@@ -1,3 +1,5 @@
+import * as _moment from 'moment';
+
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormField, GeneratedFormOutput } from '../../interfaces/form-field';
@@ -44,4 +46,16 @@ export class FormGeneratorComponent implements OnInit {
     }
   }
 
+  dateEntered(controlName:string) {
+   let date = new Date() //this.dynamicForm.get(controlName)?.value;
+   let s = date.toISOString().substring(0,10);
+   console.log(`dateeeee testt substring  ${date}`);
+   console.log("dateeee")
+
+  }
+
 }
+function moment(): any {
+  throw new Error('Function not implemented.');
+}
+

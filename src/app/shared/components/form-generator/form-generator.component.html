@@ -25,7 +25,7 @@
                             </mat-select>
                     </div>
                     <ng-container *ngIf="field.fieldType == 'date'">
-                        <input matInput [matDatepicker]="picker" [formControlName]="field.fieldLabel">
+                        <input matInput [matDatepicker]="picker" [formControlName]="field.fieldLabel" (dateInput)="dateEntered(field.fieldLabel)">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </ng-container>
@@ -38,3 +38,7 @@
         </div>
     </div>
 </form>
+{{dynamicForm.value | json}}
+
+
+<button>Test</button>
