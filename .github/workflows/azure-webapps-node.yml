@@ -25,7 +25,10 @@ jobs:
       run: npm i @zxing/library
       
     - name: Install @zxing/browser
-      run: npm i @zxing/browser  
+      run: npm i @zxing/browser
+      
+    - name: Install @cordobo/qrcode
+      run: npm i @cordobo/qrcode
       
     - name: Build
       run: npm run build --prod
