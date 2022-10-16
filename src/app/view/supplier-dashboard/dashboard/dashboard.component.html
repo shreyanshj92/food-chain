@@ -1,4 +1,4 @@
 <h1>Supplier DashBoard</h1>
 
-<app-shared-table *ngIf="farmerSelect" (selectedRecord)="farmerSelect($event)" [data]="keyValuePairsData" [keyValuePairs]="keyValuePairs" [displayedColumns]="displayColumns" ></app-shared-table>
-<app-material-collection *ngIf="!farmerSelect" [farmerDetails]="selectedFarmer"></app-material-collection>
+<app-shared-table *ngIf="!isFarmerSelected" (selectedRecord)="farmerSelect($event)" [data]="keyValuePairsData" [keyValuePairs]="keyValuePairs" [displayedColumns]="displayColumns" ></app-shared-table>
+<app-material-collection *ngIf="isFarmerSelected" [farmerDetails]="selectedFarmer"></app-material-collection>

@@ -49,6 +49,10 @@ export class AppComponent implements OnInit {
     return this.authService.hasRole(Role.Guest);
   }
 
+  get isDistributor() {
+    return this.authService.hasRole(Role.Distributor);
+  }
+
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);

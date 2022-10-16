@@ -35,6 +35,7 @@ export class FormGeneratorComponent implements OnInit {
   }
 
   onSave() {
+    console.log(this.dynamicForm.value)
     if(this.dynamicForm.valid) {
       const output: GeneratedFormOutput = {
         formName: this.formName,
@@ -49,13 +50,7 @@ export class FormGeneratorComponent implements OnInit {
   dateEntered(controlName:string) {
    let date = new Date() //this.dynamicForm.get(controlName)?.value;
    let s = date.toISOString().substring(0,10);
-   console.log(`dateeeee testt substring  ${date}`);
-   console.log("dateeee")
-
   }
 
-}
-function moment(): any {
-  throw new Error('Function not implemented.');
 }
 
