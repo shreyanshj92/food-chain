@@ -8,7 +8,7 @@ on:
     branches:
       - master
 env:
-  AZURE_WEBAPP_NAME: foodtrackerrcmmvevui
+  AZURE_WEBAPP_NAME: foodtrackermaster
   AZURE_WEBAPP_PACKAGE_PATH: './dist/food-chain'
   NODE_VERSION: '18.x'
 
