@@ -28,9 +28,7 @@ jobs:
         npm i angular-moment
         npm run build
       
-    - name: Install @cordobo/qrcode
-      run: npm i @cordobo/qrcode
-      
+     
     - name: Build
       run: npm run build --prod
     - name: 'Deploy to Azure WebApp'
