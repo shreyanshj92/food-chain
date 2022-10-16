@@ -1,5 +1,5 @@
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
 
 import { AuthenticationService } from './authentication.service';
 import { DistributerCollectionForm } from '../interfaces/distributer-collection-form';
@@ -18,6 +18,8 @@ export class FoodChainService {
 
 
   baseURL = "https://foodtrackerrcmmveuapi-foodtrackerrcmmv.azuremicroservices.io";
+
+  productDetailsData = new BehaviorSubject({});
 
   constructor(private http: HttpClient, private auth: AuthenticationService) {}
 

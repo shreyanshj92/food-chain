@@ -10,7 +10,6 @@ import { BarcodeFormat } from '@zxing/library';
 export class QrCodeReaderComponent implements OnInit {
   isReadyToScaneCode: boolean = false;
   qrResultString: string = '';
-  @Input() isEditable: boolean = false;
   @Output() onCaptureBatchCode = new EventEmitter();
 
   allowedFormats = [

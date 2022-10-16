@@ -73,7 +73,7 @@
     </svg>
   </a>
 
-  <a class="card" (click)="onChangeSelection('flow')">
+  <!-- <a class="card" (click)="onChangeSelection('flow')">
     <svg
       class="material-icons"
       xmlns="http://www.w3.org/2000/svg"
@@ -95,20 +95,27 @@
     >
       <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
     </svg>
-  </a>
+  </a> -->
 </div>
 <div class="row">
   <div class="col-md-8 offset-md-2">
     <div *ngIf="isProductDetailScannerEnabled">
-      <app-product-detail
-        [isEditable]="false"
-        (shareFormData)="onSubmit($event)"
-      ></app-product-detail>
+      <div *ngIf="!isScannedQR" class="col-md-8 offset-md-2">
+        <app-qr-code-reader
+          (onCaptureBatchCode)="onCaptureProductDetails($event)"
+        ></app-qr-code-reader>
+      </div>
+      <div *ngIf="isScannedQR">
+        <button mat-flat-button (click)="onBack()">Back</button>
+        <app-process-flow ></app-process-flow>
+      </div>
     </div>
     <div *ngIf="isProcessFlowEnabled">
+      <button mat-flat-button (click)="onBack()">Back</button>
       <app-process-flow></app-process-flow>
     </div>
     <div *ngIf="isProcessListEnabled">
+      <div *ngIf="!isSelectedRecord">
       <app-shared-table
         [data]="batchListData"
         [keyValuePairs]="keyValuePairs"
@@ -116,6 +123,10 @@
         [isActionVisible]="true"
         (selectedRecord)="onSelectedRecord($event)"
       ></app-shared-table>
+    </div>
+    <div *ngIf="isSelectedRecord">
+      <app-process-flow ></app-process-flow>
+    </div>
     </div>
   </div>
 </div>

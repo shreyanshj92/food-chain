@@ -1,25 +1,20 @@
 
   <mat-horizontal-stepper labelPosition="bottom" linear #stepper>
-  <mat-step [stepControl]="receivedFormGroup" [completed]="step1Complete">
-    <app-received #receivedComponent></app-received>
+  <mat-step [stepControl]="receivedFormGroup" >
+    <ng-template matStepLabel>Received</ng-template>
+    <app-received  (checkFormGroup)="checkFormGroup($event)" (moveStep)="moveStep($event)"></app-received>
   </mat-step>
-  <mat-step [stepControl]="qualityCheckFormGroup" [completed]="step2Complete">
-    <app-quality-check
-    #qualityCheckComponent
+  <mat-step [stepControl]="qualityCheckFormGroup" >
+    <ng-template matStepLabel>Quality Check</ng-template>
+    <app-quality-check  (checkFormGroup)="checkFormGroup($event)" (moveStep)="moveStep($event)"
     ></app-quality-check>
   </mat-step>
-  <mat-step [stepControl]="cleanedFormGroup" [completed]="step3Complete">
-    <app-cleaned #cleanedComponent ></app-cleaned>
+  <mat-step [stepControl]="cleanedFormGroup" >
+    <ng-template matStepLabel>Cleaned</ng-template>
+    <app-cleaned   (checkFormGroup)="checkFormGroup($event)" (moveStep)="moveStep($event)"></app-cleaned>
   </mat-step>
-  <mat-step [stepControl]="processedFormGroup" [completed]="step4Complete">
-    <app-processed #processedComponent ></app-processed>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
+  <mat-step [stepControl]="processedFormGroup">
+    <ng-template matStepLabel>Processed</ng-template>
+    <app-processed  (checkFormGroup)="checkFormGroup($event)" (moveStep)="moveStep($event)"></app-processed>
   </mat-step>
 </mat-horizontal-stepper>
