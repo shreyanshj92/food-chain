@@ -1,9 +1,105 @@
-<form [formGroup]="processedFormGroup">
-    <ng-template matStepLabel>Processed</ng-template>
-    
-
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
+<loading *ngIf="isLoading"></loading>
+<form [formGroup]="processedFormGroup" class="col-md-6 offset-md-3" novalidate>
+  
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Batch Id</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Type here"
+          formControlName="batchId"
+        />
+      </mat-form-field>
     </div>
-  </form>
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Run Id</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Type here"
+          formControlName="runId"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field class="mb-3 col-md-6" appearance="outline">
+        <mat-label>Event Type</mat-label>
+        <mat-select formControlName="eventType">
+          <mat-option
+            *ngFor="let eventType of eventTypes"
+            [value]="eventType"
+            >{{ eventType }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field class="mb-3 col-md-6" appearance="outline">
+        <mat-label>Event Date Time</mat-label>
+        <input
+          matInput
+          [matDatepicker]="eventDateTimePicker"
+          formControlName="eventDateTime"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="eventDateTimePicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #eventDateTimePicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Original Quantity</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Type here"
+          formControlName="totalPackages"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Quantity</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Type here"
+          formControlName="quantity"
+        />
+      </mat-form-field>
+    </div>
+    <h4>Package Details</h4>
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Total Packages</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Type here"
+          formControlName="totalPackages"
+        />
+      </mat-form-field>
+    </div>
+    
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Number Of Items Per Package</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Type here"
+          formControlName="numberOfItemsPerPackage"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <div>
+    <button mat-stroked-button (click)="onNext()">Next</button>
+  </div>
+</form>

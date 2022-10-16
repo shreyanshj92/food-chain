@@ -23,6 +23,11 @@ export class DashboardComponent implements OnInit {
   isProductDetailScannerEnabled = false;
   isProcessFlowEnabled = false;
   isProcessListEnabled = false;
+  isScannedQR = false;
+  isSelectedRecord = false;
+  isLoading = false;
+
+  productDetailsData!: any;
 
   constructor(private foodChainService: FoodChainService) {}
 
@@ -38,8 +43,6 @@ export class DashboardComponent implements OnInit {
     this.isProcessListEnabled = false;
     if (type === 'scan') {
       this.isProductDetailScannerEnabled = true;
-    } else if (type === 'flow') {
-      this.isProcessFlowEnabled = true;
     } else {
       this.isProcessListEnabled = true;
       this.getProcessList();
@@ -47,14 +50,39 @@ export class DashboardComponent implements OnInit {
   }
 
   getProcessList(): void {
-    this.foodChainService
-      .getBatchIdList()
-      .subscribe((batchList: EventDetails[]) => {
+    this.isLoading = true;
+    this.foodChainService.getBatchIdList().subscribe(
+      (batchList: EventDetails[]) => {
         this.batchListData = batchList;
-      });
+        this.isLoading = false;
+      },
+      (error) => (this.isLoading = false)
+    );
+  }
+
+  onCaptureProductDetails(batchId: any): void {
+    this.getProductDetails(batchId);
   }
 
   onSelectedRecord(selectedRecord: any): void {
-    console.log(selectedRecord);
+    this.getProductDetails(selectedRecord?.batchId);
+  }
+
+  getProductDetails(batchId: any): void {
+    this.isLoading = true;
+    this.foodChainService.getProductDetailsByBatchID(batchId).subscribe(
+      (productDetails: any) => {
+        this.foodChainService.productDetailsData.next(productDetails);
+        this.isSelectedRecord = true;
+        this.isScannedQR = true;
+        this.isLoading = false;
+      },
+      (error) => (this.isLoading = false)
+    );
+  }
+
+  onBack(): void {
+    this.isScannedQR = false;
+    this.isSelectedRecord = false;
   }
 }

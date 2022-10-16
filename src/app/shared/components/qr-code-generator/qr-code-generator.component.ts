@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { SafeUrl } from '@angular/platform-browser';
 
@@ -8,12 +8,11 @@ import { SafeUrl } from '@angular/platform-browser';
   styleUrls: ['./qr-code-generator.component.scss']
 })
 export class QrCodeGeneratorComponent implements OnInit {
-  myAngularxQrCode: string = "";
+  @Input() myAngularxQrCode: string = "";
   qrCodeDownloadLink: SafeUrl = "";
   isQrCodeGenerated: boolean = false;
 
   constructor() {
-    this.myAngularxQrCode = '';
    }
 
   ngOnInit(): void {

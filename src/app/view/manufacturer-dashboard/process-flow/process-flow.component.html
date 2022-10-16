@@ -1,25 +1,39 @@
-
-  <mat-horizontal-stepper labelPosition="bottom" linear #stepper>
-  <mat-step [stepControl]="receivedFormGroup" [completed]="step1Complete">
-    <app-received #receivedComponent></app-received>
+<mat-horizontal-stepper labelPosition="bottom" linear #stepper>
+  <mat-step [stepControl]="receivedFormGroup">
+    <ng-template matStepLabel>Received</ng-template>
+    <app-received
+      (checkFormGroup)="checkFormGroup($event)"
+      (moveStep)="moveStep($event)"
+    ></app-received>
   </mat-step>
-  <mat-step [stepControl]="qualityCheckFormGroup" [completed]="step2Complete">
+  <mat-step [stepControl]="qualityCheckFormGroup">
+    <ng-template matStepLabel>Quality Check</ng-template>
     <app-quality-check
-    #qualityCheckComponent
+      (checkFormGroup)="checkFormGroup($event)"
+      (moveStep)="moveStep($event)"
     ></app-quality-check>
   </mat-step>
-  <mat-step [stepControl]="cleanedFormGroup" [completed]="step3Complete">
-    <app-cleaned #cleanedComponent ></app-cleaned>
+  <mat-step [stepControl]="cleanedFormGroup">
+    <ng-template matStepLabel>Cleaned</ng-template>
+    <app-cleaned
+      (checkFormGroup)="checkFormGroup($event)"
+      (moveStep)="moveStep($event)"
+    ></app-cleaned>
   </mat-step>
-  <mat-step [stepControl]="processedFormGroup" [completed]="step4Complete">
-    <app-processed #processedComponent ></app-processed>
+  <mat-step [stepControl]="processedFormGroup">
+    <ng-template matStepLabel>Processed</ng-template>
+    <app-processed
+      (generatedProductId)="onGenerationProductId($event)"
+      (checkFormGroup)="checkFormGroup($event)"
+      (moveStep)="moveStep($event)"
+    ></app-processed>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+    <ng-template matStepLabel>Download QR Code</ng-template>
+    <div *ngIf="!!productId">
+      <app-qr-code-generator
+        [myAngularxQrCode]="productId"
+      ></app-qr-code-generator>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

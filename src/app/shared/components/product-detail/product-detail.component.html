@@ -2,7 +2,6 @@
 <div class="row product-details">
   <div *ngIf="!isSummeryAvailable" class="col-md-8 offset-md-2">
     <app-qr-code-reader
-      [isEditable]="isEditable"
       (onCaptureBatchCode)="onCaptureProductDetails($event)"
     ></app-qr-code-reader>
   </div>

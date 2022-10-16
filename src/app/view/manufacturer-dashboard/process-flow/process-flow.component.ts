@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { CleanedComponent } from './cleaned/cleaned.component';
+import { FoodChainService } from 'src/app/shared/services/food-chain.service';
 import { MatStepper } from '@angular/material/stepper';
 import { ProcessedComponent } from './processed/processed.component';
 import { QualityCheckComponent } from './quality-check/quality-check.component';
@@ -10,67 +11,88 @@ import { ReceivedComponent } from './received/received.component';
 @Component({
   selector: 'app-process-flow',
   templateUrl: './process-flow.component.html',
-  styleUrls: ['./process-flow.component.scss']
+  styleUrls: ['./process-flow.component.scss'],
 })
 export class ProcessFlowComponent implements OnInit {
   @ViewChild('stepper') stepper!: MatStepper;
 
-  @Input() productDetail!:any;
-  
-  step1Complete:boolean = false;
-  step2Complete:boolean= false;
-  step3Complete:boolean= false;
-  step4Complete:boolean= false;
-  @ViewChild('ReceivedComponent') receivedComponent!: ReceivedComponent;
-  @ViewChild('QualityCheckComponent') qualityCheckComponent!: QualityCheckComponent;
-  @ViewChild('CleanedComponent') cleanedComponent!: CleanedComponent;
-  @ViewChild('ProcessedComponent') processedComponent!: ProcessedComponent;
+  receivedFormGroup!: FormGroup;
+  qualityCheckFormGroup!: FormGroup;
 
-  
+  cleanedFormGroup!: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  processedFormGroup!: FormGroup;
+
+  productId!: string;
+
+  constructor(private _formBuilder: FormBuilder, private foodChainService: FoodChainService) {}
 
   ngOnInit(): void {
-    // switch(this.productDetail?.eventType){
-    //   case "Received": this.stepper.selectedIndex = 0;
-    //   break; 
-    //   case "QualityCheck": this.stepper.selectedIndex = 1;
-    //   this.step1Complete = true;
-    //   break; 
-    //   case "Cleaned": this.stepper.selectedIndex = 2;
-    //   this.step1Complete = true;
-    //   this.step2Complete = true;
-    //   break; 
-    //   case "Processed": this.stepper.selectedIndex = 3;
-    //   this.step1Complete = true;
-    //   this.step2Complete = true;
-    //   this.step3Complete = true;
-    //   break; 
-    //   default : this.stepper.selectedIndex = 4;
-    //   this.step1Complete = true;
-    //   this.step2Complete = true;
-    //   this.step3Complete = true;
-    //   this.step4Complete = true;
-
-    //   break; 
-    // }
-    
+    this.foodChainService.productDetailsData.subscribe((productDetails: any)=>{
+      switch(productDetails.eventType){
+        case "Received": setTimeout(
+          () =>
+            (this.stepper.selectedIndex = 0),
+          0
+        );
+          break;
+          case "QualityCheck": setTimeout(
+            () =>
+              (this.stepper.selectedIndex = 1),
+            0
+          );
+          break;
+          case "Cleaned": setTimeout(
+            () =>
+              (this.stepper.selectedIndex = 2),
+            0
+          );
+          break;
+          case "Processed": setTimeout(
+            () =>
+              (this.stepper.selectedIndex = 3),
+            0
+          );
+          break;
+          default: break;
+      }
+    })
   }
 
-  get receivedFormGroup() {
-    return this.receivedComponent.receivedFormGroup;
-  }
-
-  get qualityCheckFormGroup() {
-    return this.qualityCheckComponent ? this.qualityCheckComponent.qualityCheckFormGroup : null;
-  }
-
-  get cleanedFormGroup() {
-    return this.cleanedComponent ? this.cleanedComponent.cleanedFormGroup : null;
-  }
-
-    get processedFormGroup() {
-      return this.processedComponent ? this.processedComponent.processedFormGroup : null;
+  checkFormGroup(event: any): void {
+    switch (event.step) {
+      case 1:
+        this.receivedFormGroup = event.form;
+        break;
+      case 2:
+        this.qualityCheckFormGroup = event.form;
+        break;
+      case 3:
+        this.cleanedFormGroup = event.form;
+        break;
+      case 4:
+        this.processedFormGroup = event.form;
+        break;
+      default:
+        break;
     }
+  }
 
+  moveStep(step: any): void {
+    console.log(this.stepper.selectedIndex, step);
+    setTimeout(
+      () =>
+        (this.stepper.selectedIndex =
+          step === 'back'
+            ? this.stepper.selectedIndex - 1
+            : this.stepper.selectedIndex + 1),
+      0
+    );
+  }
+
+  onGenerationProductId(productId:string): void {
+    this.productId = productId
+  }
+
+  
 }

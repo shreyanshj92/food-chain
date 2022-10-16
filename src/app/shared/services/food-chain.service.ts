@@ -1,5 +1,5 @@
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
 
 import { AuthenticationService } from './authentication.service';
 import { DistributerCollectionForm } from '../interfaces/distributer-collection-form';
@@ -18,6 +18,9 @@ export class FoodChainService {
 
 
   baseURL = "https://foodtrackerrcmmveuapi-foodtrackerrcmmv.azuremicroservices.io";
+
+  productDetailsData = new BehaviorSubject({});
+  processFlowData = new BehaviorSubject({});
 
   constructor(private http: HttpClient, private auth: AuthenticationService) {}
 
@@ -53,8 +56,6 @@ export class FoodChainService {
     return this.http.get<ProductSummary>(url);
   }
 
-  getProductDetails(e:any){return of('test')}
-
   // GET API to get user's details based on user ID and user ROLE
   getUserDetailBy_ID_ROLE(userId: number, role: string): Observable<ProductSummary> {
     const url = `${this.baseURL}/getUserDetail/${userId}/${role}`;
@@ -81,7 +82,7 @@ export class FoodChainService {
 
   //POST API to save the product details
   saveProductDetails(productDetails: ProductDetails): Observable<FoodProcess> {
-    const url = `${this.baseURL}/process/productdetail/update`;
+    const url = `${this.baseURL}/product/productdetail/update`;
     return this.http.post<FoodProcess>(url, productDetails);
   }
 
