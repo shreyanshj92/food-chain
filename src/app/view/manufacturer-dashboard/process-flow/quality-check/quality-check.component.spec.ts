@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ScannerComponent } from './scanner.component';
+import { QualityCheckComponent } from './quality-check.component';
 
-describe('ScannerComponent', () => {
-  let component: ScannerComponent;
-  let fixture: ComponentFixture<ScannerComponent>;
+describe('QualityCheckComponent', () => {
+  let component: QualityCheckComponent;
+  let fixture: ComponentFixture<QualityCheckComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ScannerComponent ]
+      declarations: [ QualityCheckComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ScannerComponent);
+    fixture = TestBed.createComponent(QualityCheckComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { LOGIN_CREDENTIALS } from '../constants/constant';
 import { Role } from '../models/roles';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class AuthenticationService {
   user: any = new BehaviorSubject({});
   credentials = LOGIN_CREDENTIALS;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   isAuthorized() {
     return !!this.userDetail;
@@ -32,19 +33,17 @@ export class AuthenticationService {
       username: userName,
       password: password,
     };
-    console.log(userName,password)
     // this.http.post(url, data).subscribe((jwtResponse: any) => {
     //   this.token = jwtResponse.token;
     //   this.userDetail = this.parseJwt(jwtResponse.token);
     //   this.user.next(this.userDetail);
     //   return this.userDetail;
     // });
-    
+
     // TODO: Hardcoded credentials
     this.userDetail = this.credentials.filter(
       (cred) => cred.userName === userName
     )[0];
-    console.log(this.userDetail)
     this.user.next(this.userDetail);
     return this.userDetail;
   }

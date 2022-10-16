@@ -15,10 +15,10 @@ import { UserDetails } from '../interfaces/user-details';
   providedIn: 'root',
 })
 export class FoodChainService {
-  
- 
+
+
   baseURL = "https://foodtrackerrcmmveuapi-foodtrackerrcmmv.azuremicroservices.io";
-  
+
   constructor(private http: HttpClient, private auth: AuthenticationService) {}
 
   // POST API to save the material collection form details, used by supplier.
@@ -43,7 +43,7 @@ export class FoodChainService {
 
   //GET API to fetch the list of all Events along with their batchIds
   getBatchIdList():Observable<EventDetails[]> {
-    const url = `${this.baseURL}/getBatchId`;
+    const url = `${this.baseURL}/getBatchList`;
     return this.http.get<EventDetails[]>(url);
   }
 
@@ -52,7 +52,7 @@ export class FoodChainService {
     const url = `${this.baseURL}/getProductDetails/${batchId}`;
     return this.http.get<ProductSummary>(url);
   }
-  
+
   getProductDetails(e:any){return of('test')}
 
   // GET API to get user's details based on user ID and user ROLE
@@ -84,6 +84,6 @@ export class FoodChainService {
     const url = `${this.baseURL}/process/productdetail/update`;
     return this.http.post<FoodProcess>(url, productDetails);
   }
-  
+
 
 }

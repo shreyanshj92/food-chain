@@ -1,10 +1,17 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 
 import { BehaviorSubject } from 'rxjs';
-import { KEY_VALUE } from '../../constants/constant';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { outputAst } from '@angular/compiler';
 
 export interface UserData {
   id: string;
@@ -22,8 +29,13 @@ export class SharedTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  @Input() keyValuePairs = KEY_VALUE;
-  @Input() displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
+  @Input() keyValuePairs!: any;
+  @Input() displayedColumns!: string[];
+  @Input() isActionVisible: boolean = false;
+
+  @Output() selectedRecord = new EventEmitter();
+
+  displayedColumns2!: string[];
 
   private _data = new BehaviorSubject<any>([]);
   @Input() set data(value: any) {
@@ -38,16 +50,17 @@ export class SharedTableComponent implements OnInit {
   pageIndex: number = 0;
   rowPerPage: number = 10;
   pageSizeOptions: number[] = [5, 10, 25];
-  
 
   tableLength: boolean = false;
 
   constructor() {}
 
   ngOnInit(): void {
+    this.displayedColumns2 = this.displayedColumns;
+    this.displayedColumns2 = this.displayedColumns.concat('action');
     this.getTableData();
   }
-  
+
   getTableData() {
     this._data.subscribe(
       (response: any) => {
@@ -61,11 +74,10 @@ export class SharedTableComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-  setTimeout(()=>{
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  },0)
-    
+    setTimeout(() => {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }, 0);
   }
 
   paginatorEvent(pageEvent: any) {
@@ -80,5 +92,9 @@ export class SharedTableComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  onSelect(record: any): void {
+    this.selectedRecord.emit(record);
   }
 }

@@ -14,7 +14,9 @@ const routes: Routes = [
   {
     path: 'materialCollection',
     component: MaterialCollectionComponent
-  }
+  },
+  { path: '', redirectTo: 'dashboard', pathMatch: "full" },
+
 ];
 
 @NgModule({
