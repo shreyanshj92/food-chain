@@ -21,10 +21,10 @@ export class ProcessFlowComponent implements OnInit {
   step2Complete:boolean= false;
   step3Complete:boolean= false;
   step4Complete:boolean= false;
-  @ViewChild('ReceivedComponent') receivedComponent!: ReceivedComponent;
-  @ViewChild('QualityCheckComponent') qualityCheckComponent!: QualityCheckComponent;
-  @ViewChild('CleanedComponent') cleanedComponent!: CleanedComponent;
-  @ViewChild('ProcessedComponent') processedComponent!: ProcessedComponent;
+  @ViewChild('ReceivedComponent') receivedComponent: ReceivedComponent = new ReceivedComponent(new FormBuilder);
+  @ViewChild('QualityCheckComponent') qualityCheckComponent : QualityCheckComponent=new QualityCheckComponent(new FormBuilder);
+  @ViewChild('CleanedComponent') cleanedComponent: CleanedComponent=new CleanedComponent(new FormBuilder);
+  @ViewChild('ProcessedComponent') processedComponent: ProcessedComponent=new ProcessedComponent(new FormBuilder);
 
   
 
