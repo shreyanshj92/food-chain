@@ -18,14 +18,15 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ env.NODE_VERSION }}
-    - name: Install dependencies
-      run: npm install
       
-    - name: Install @zxing/library
-      run: npm i @zxing/library
-      
-    - name: Install @zxing/browser
-      run: npm i @zxing/browser
+    - name: npm install, build, and test
+      run: |
+        npm install
+        npm i @zxing/library
+        npm i @zxing/browser
+        npm i @cordobo/qrcode
+        npm i angular-moment
+        npm run build
       
     - name: Install @cordobo/qrcode
       run: npm i @cordobo/qrcode
