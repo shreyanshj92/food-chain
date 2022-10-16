@@ -1,47 +1,18 @@
-<mat-stepper labelPosition="bottom" #stepper>
+
+  <mat-horizontal-stepper labelPosition="bottom" linear #stepper>
   <mat-step [stepControl]="receivedFormGroup" [completed]="step1Complete">
-    <form [formGroup]="receivedFormGroup">
-      <ng-template matStepLabel>Received</ng-template>
-      <app-received [receivedFormGroup]="receivedFormGroup"></app-received>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
+    <app-received #receivedComponent></app-received>
   </mat-step>
   <mat-step [stepControl]="qualityCheckFormGroup" [completed]="step2Complete">
-    <form [formGroup]="qualityCheckFormGroup">
-      <ng-template matStepLabel>Quality Check</ng-template>
-      <app-quality-check
-        [qualityCheckFormGroup]="qualityCheckFormGroup"
-      ></app-quality-check>
-
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
+    <app-quality-check
+    #qualityCheckComponent
+    ></app-quality-check>
   </mat-step>
   <mat-step [stepControl]="cleanedFormGroup" [completed]="step3Complete">
-    <form [formGroup]="cleanedFormGroup">
-      <ng-template matStepLabel>Cleaned</ng-template>
-      <app-cleaned [cleanedFormGroup]="cleanedFormGroup"></app-cleaned>
-
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
+    <app-cleaned #cleanedComponent ></app-cleaned>
   </mat-step>
   <mat-step [stepControl]="processedFormGroup" [completed]="step4Complete">
-    <form [formGroup]="processedFormGroup">
-      <ng-template matStepLabel>Processed</ng-template>
-      <app-processed [processedFormGroup]="processedFormGroup"></app-processed>
-
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
+    <app-processed #processedComponent ></app-processed>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
@@ -51,4 +22,4 @@
       <button mat-button (click)="stepper.reset()">Reset</button>
     </div>
   </mat-step>
-</mat-stepper>
+</mat-horizontal-stepper>

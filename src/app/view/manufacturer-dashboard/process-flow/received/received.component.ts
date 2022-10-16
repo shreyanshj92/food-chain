@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-received',
@@ -6,11 +7,14 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./received.component.scss']
 })
 export class ReceivedComponent implements OnInit {
-  @Input() receivedFormGroup!:any;
+  receivedFormGroup!: FormGroup
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+   this.receivedFormGroup = this.fb.group({
+
+    })
   }
 
 }
