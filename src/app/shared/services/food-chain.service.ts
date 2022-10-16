@@ -53,8 +53,6 @@ export class FoodChainService {
     return this.http.get<ProductSummary>(url);
   }
 
-  getProductDetails(e:any){return of('test')}
-
   // GET API to get user's details based on user ID and user ROLE
   getUserDetailBy_ID_ROLE(userId: number, role: string): Observable<ProductSummary> {
     const url = `${this.baseURL}/getUserDetail/${userId}/${role}`;
