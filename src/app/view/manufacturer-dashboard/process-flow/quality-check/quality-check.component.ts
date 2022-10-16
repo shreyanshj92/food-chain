@@ -12,49 +12,53 @@ import { FoodChainService } from 'src/app/shared/services/food-chain.service';
 export class QualityCheckComponent implements OnInit {
   qualityCheckFormGroup!: FormGroup;
   eventTypes = EventTypes;
+  isLoading = false;
 
   @Input() productDetail!: any;
   @Output() moveStep = new EventEmitter();
   @Output() checkFormGroup = new EventEmitter();
 
-  constructor(private fb: FormBuilder, private foodChainService: FoodChainService) {}
+  constructor(
+    private fb: FormBuilder,
+    private foodChainService: FoodChainService
+  ) {}
 
   ngOnInit(): void {
     this.qualityCheckFormGroup = this.fb.group({
       batchId: [''],
-      eventType: [''],
-      formerDetails: this.fb.group({
-        username: [''],
-        phone: [''],
-        email: [''],
-        address: [''],
-      }),
-      dispatchDate: [''],
-      supplierDetails: this.fb.group({
-        username: [''],
-        phone: [''],
-        email: [''],
-        address: [''],
-      }),
+      runId: [''],
+      eventType: [{ value: '', disabled: 'true' }],
       eventDateTime: [''],
-      fleetDetails: this.fb.group({
-        fleetId: [''],
-        fromLocation: [''],
-        toLocation: [''],
-        driverName: [''],
-        driverContactNumber: [''],
-        journeyStartDate: [''],
-      }),
+      originalQuantity: [''],
+      quantity: [''],
     });
     this.checkFormGroup.emit({ step: 1, form: this.qualityCheckFormGroup });
-    this.foodChainService.productDetailsData.subscribe((productDetails: any)=>{
-      this.qualityCheckFormGroup.patchValue(productDetails);
-      this.qualityCheckFormGroup.updateValueAndValidity();
-    })
+    this.foodChainService.processFlowData.subscribe(
+      (productDetails: any) => {
+        this.qualityCheckFormGroup.patchValue(productDetails);
+        this.qualityCheckFormGroup.updateValueAndValidity();
+      }
+    );
   }
 
   onNext(): void {
-    this.moveStep.emit('forward');
+    
+    const data = {...this.qualityCheckFormGroup.value, ...{eventType:"QualityCheck"}};
+    this.qualityCheckFormGroup.updateValueAndValidity();
+
+    this.isLoading = true;
+    this.foodChainService
+      .saveFoodProcess(data)
+      .subscribe(
+        (response: any) => {
+          this.foodChainService.processFlowData.next(response);
+          this.isLoading = false;
+          this.moveStep.emit('forward');
+        },
+        (error) => {
+          this.isLoading = false;
+        }
+      );
   }
   onPrevious(): void {
     this.moveStep.emit('back');

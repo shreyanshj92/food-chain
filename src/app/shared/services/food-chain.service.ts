@@ -20,6 +20,7 @@ export class FoodChainService {
   baseURL = "https://foodtrackerrcmmveuapi-foodtrackerrcmmv.azuremicroservices.io";
 
   productDetailsData = new BehaviorSubject({});
+  processFlowData = new BehaviorSubject({});
 
   constructor(private http: HttpClient, private auth: AuthenticationService) {}
 
@@ -83,7 +84,7 @@ export class FoodChainService {
 
   //POST API to save the product details
   saveProductDetails(productDetails: ProductDetails): Observable<FoodProcess> {
-    const url = `${this.baseURL}/process/productdetail/update`;
+    const url = `${this.baseURL}/product/productdetail/update`;
     return this.http.post<FoodProcess>(url, productDetails);
   }
 

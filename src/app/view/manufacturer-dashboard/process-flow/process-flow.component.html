@@ -1,20 +1,39 @@
-
-  <mat-horizontal-stepper labelPosition="bottom" linear #stepper>
-  <mat-step [stepControl]="receivedFormGroup" >
+<mat-horizontal-stepper labelPosition="bottom" linear #stepper>
+  <mat-step [stepControl]="receivedFormGroup">
     <ng-template matStepLabel>Received</ng-template>
-    <app-received  (checkFormGroup)="checkFormGroup($event)" (moveStep)="moveStep($event)"></app-received>
+    <app-received
+      (checkFormGroup)="checkFormGroup($event)"
+      (moveStep)="moveStep($event)"
+    ></app-received>
   </mat-step>
-  <mat-step [stepControl]="qualityCheckFormGroup" >
+  <mat-step [stepControl]="qualityCheckFormGroup">
     <ng-template matStepLabel>Quality Check</ng-template>
-    <app-quality-check  (checkFormGroup)="checkFormGroup($event)" (moveStep)="moveStep($event)"
+    <app-quality-check
+      (checkFormGroup)="checkFormGroup($event)"
+      (moveStep)="moveStep($event)"
     ></app-quality-check>
   </mat-step>
-  <mat-step [stepControl]="cleanedFormGroup" >
+  <mat-step [stepControl]="cleanedFormGroup">
     <ng-template matStepLabel>Cleaned</ng-template>
-    <app-cleaned   (checkFormGroup)="checkFormGroup($event)" (moveStep)="moveStep($event)"></app-cleaned>
+    <app-cleaned
+      (checkFormGroup)="checkFormGroup($event)"
+      (moveStep)="moveStep($event)"
+    ></app-cleaned>
   </mat-step>
   <mat-step [stepControl]="processedFormGroup">
     <ng-template matStepLabel>Processed</ng-template>
-    <app-processed  (checkFormGroup)="checkFormGroup($event)" (moveStep)="moveStep($event)"></app-processed>
+    <app-processed
+      (generatedProductId)="onGenerationProductId($event)"
+      (checkFormGroup)="checkFormGroup($event)"
+      (moveStep)="moveStep($event)"
+    ></app-processed>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Download QR Code</ng-template>
+    <div *ngIf="!!productId">
+      <app-qr-code-generator
+        [myAngularxQrCode]="productId"
+      ></app-qr-code-generator>
+    </div>
   </mat-step>
 </mat-horizontal-stepper>

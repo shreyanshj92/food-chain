@@ -12,51 +12,55 @@ import { FoodChainService } from 'src/app/shared/services/food-chain.service';
 export class CleanedComponent implements OnInit {
   cleanedFormGroup!: FormGroup;
   eventTypes = EventTypes;
+  isLoading = false;
 
-  @Input() productDetail!:any
+  @Input() productDetail!: any;
   @Output() moveStep = new EventEmitter();
   @Output() checkFormGroup = new EventEmitter();
 
-  constructor(private fb: FormBuilder, private foodChainService: FoodChainService) {}
+  constructor(
+    private fb: FormBuilder,
+    private foodChainService: FoodChainService
+  ) {}
 
   ngOnInit(): void {
     this.cleanedFormGroup = this.fb.group({
       batchId: [''],
-      eventType: [''],
-      formerDetails: this.fb.group({
-        username: [''],
-        phone: [''],
-        email: [''],
-        address: [''],
-      }),
-      dispatchDate: [''],
-      supplierDetails: this.fb.group({
-        username: [''],
-        phone: [''],
-        email: [''],
-        address: [''],
-      }),
+      runId: [''],
+      eventType: [{ value: '', disabled: 'true' }],
       eventDateTime: [''],
-      fleetDetails: this.fb.group({
-        fleetId: [''],
-        fromLocation: [''],
-        toLocation: [''],
-        driverName: [''],
-        driverContactNumber: [''],
-        journeyStartDate: [''],
-      }),
+      originalQuantity: [''],
+      quantity: [''],
     });
-    this.checkFormGroup.emit({step:2,form:this.cleanedFormGroup});
-    this.foodChainService.productDetailsData.subscribe((productDetails: any)=>{
-      this.cleanedFormGroup.patchValue(productDetails);
-      this.cleanedFormGroup.updateValueAndValidity();
-    })
+    this.checkFormGroup.emit({ step: 2, form: this.cleanedFormGroup });
+    this.foodChainService.processFlowData.subscribe(
+      (productDetails: any) => {
+        this.cleanedFormGroup.patchValue(productDetails);
+        this.cleanedFormGroup.updateValueAndValidity();
+      }
+    );
   }
 
   onNext(): void {
-    this.moveStep.emit("forward")
+    
+    const data = {...this.cleanedFormGroup.value, ...{eventType:"Cleaned"}};
+    this.cleanedFormGroup.updateValueAndValidity();
+
+    this.isLoading = true;
+    this.foodChainService
+      .saveFoodProcess(data)
+      .subscribe(
+        (response: any) => {
+          this.foodChainService.processFlowData.next(response);
+          this.isLoading = false;
+          this.moveStep.emit('forward');
+        },
+        (error) => {
+          this.isLoading = false;
+        }
+      );
   }
-  onPrevious(): void{
-    this.moveStep.emit("back")
+  onPrevious(): void {
+    this.moveStep.emit('back');
   }
 }

@@ -23,6 +23,8 @@ export class ProcessFlowComponent implements OnInit {
 
   processedFormGroup!: FormGroup;
 
+  productId!: string;
+
   constructor(private _formBuilder: FormBuilder, private foodChainService: FoodChainService) {}
 
   ngOnInit(): void {
@@ -86,6 +88,10 @@ export class ProcessFlowComponent implements OnInit {
             : this.stepper.selectedIndex + 1),
       0
     );
+  }
+
+  onGenerationProductId(productId:string): void {
+    this.productId = productId
   }
 
   

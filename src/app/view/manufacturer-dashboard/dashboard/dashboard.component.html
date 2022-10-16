@@ -1,3 +1,4 @@
+<loading *ngIf="isLoading"></loading>
 <div class="card-container">
   <a class="card" (click)="onChangeSelection('scan')">
     <svg
@@ -107,7 +108,7 @@
       </div>
       <div *ngIf="isScannedQR">
         <button mat-flat-button (click)="onBack()">Back</button>
-        <app-process-flow ></app-process-flow>
+        <app-process-flow></app-process-flow>
       </div>
     </div>
     <div *ngIf="isProcessFlowEnabled">
@@ -115,18 +116,18 @@
       <app-process-flow></app-process-flow>
     </div>
     <div *ngIf="isProcessListEnabled">
-      <div *ngIf="!isSelectedRecord">
-      <app-shared-table
-        [data]="batchListData"
-        [keyValuePairs]="keyValuePairs"
-        [displayedColumns]="displayedColumns"
-        [isActionVisible]="true"
-        (selectedRecord)="onSelectedRecord($event)"
-      ></app-shared-table>
-    </div>
-    <div *ngIf="isSelectedRecord">
-      <app-process-flow ></app-process-flow>
-    </div>
+      <div *ngIf="!isSelectedRecord; else showFlow">
+        <app-shared-table
+          [data]="batchListData"
+          [keyValuePairs]="keyValuePairs"
+          [displayedColumns]="displayedColumns"
+          [isActionVisible]="true"
+          (selectedRecord)="onSelectedRecord($event)"
+        ></app-shared-table>
+      </div>
+      <ng-template #showFlow>
+        <app-process-flow></app-process-flow>
+      </ng-template>
     </div>
   </div>
 </div>
