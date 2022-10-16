@@ -30,11 +30,12 @@ export class FormGeneratorComponent implements OnInit {
 
   createForm() {
     this.formFields.forEach(field => {
-      this.dynamicForm.addControl(field.fieldLabel,this.fb.control({value:field.userAnswer, disabled:field.disabled}, field.required ? Validators.required : null));
+      this.dynamicForm.addControl(field.fieldLabel,this.fb.control(field.userAnswer, field.required ? Validators.required : null));
     })
   }
 
   onSave() {
+    console.log(this.dynamicForm.value)
     if(this.dynamicForm.valid) {
       const output: GeneratedFormOutput = {
         formName: this.formName,

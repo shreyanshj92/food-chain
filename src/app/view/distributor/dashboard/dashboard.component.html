@@ -1,1 +1,15 @@
-<p>dashboard works!</p>
+<div class="container">
+    <h1>Distributor Dashboard</h1>
+
+    <div *ngIf="!isretailerSelected">
+        <mat-form-field appearance="outline">
+            <mat-label>Select a retailer</mat-label>
+            <mat-select [(ngModel)]="selectedRetailer" >
+                <mat-option *ngFor="let retailer of retailerList" [value]="retailer" (click)="retailerSelected(retailer)">
+                    Retailer User name - {{retailer.username}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <app-distributor-collection-form *ngIf="isretailerSelected" [retailerDetails]="selectedRetailer"></app-distributor-collection-form>
+</div>

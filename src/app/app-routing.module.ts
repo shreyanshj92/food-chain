@@ -55,6 +55,14 @@ const routes: Routes = [
     data: { roles: [Role.Retailer] },
   },
   {
+    path: 'distributor',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
+    loadChildren: () =>
+      import('./view/distributor/distributor.module').then((m) => m.DistributorModule),
+    data: { roles: [Role.Distributor] },
+  },
+  {
     path: 'login',
     component: LoginComponent,
   },
