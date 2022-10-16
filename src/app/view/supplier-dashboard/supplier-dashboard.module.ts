@@ -13,24 +13,14 @@ const routes: Routes = [
   },
   {
     path: 'materialCollection',
-    component: MaterialCollectionComponent
+    component: MaterialCollectionComponent,
   },
-  { path: '', redirectTo: 'dashboard', pathMatch: "full" },
-
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 
 @NgModule({
-  declarations: [
-    DashboardComponent,
-    MaterialCollectionComponent
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    RouterModule.forChild(routes),
-  ],
-  exports: [
-    MaterialCollectionComponent
-  ]
+  declarations: [DashboardComponent, MaterialCollectionComponent],
+  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
+  exports: [MaterialCollectionComponent],
 })
-export class SupplierDashboardModule { }
+export class SupplierDashboardModule {}

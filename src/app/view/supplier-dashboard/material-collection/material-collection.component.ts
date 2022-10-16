@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { FoodChainService } from './../../../shared/services/food-chain.service';
@@ -16,36 +16,42 @@ export class MaterialCollectionComponent implements OnInit {
   @Input() farmerDetails!:UserDetails;
   supplierDetails: any;
 
-  materialFormFields: MaterialCollectionForm; 
+  materialFormFields!: MaterialCollectionForm; 
 
   formDynamicJSON: FormField[] = [];
 
-  constructor(private fcs: FoodChainService, private authService: AuthenticationService) { 
-    this.materialFormFields = {
-      formerId: this.farmerDetails?.userId | 0,
-      materialName: '',
-      quantity: 0,
-      packageDate: new Date(),
-      dispatchDate: new Date(),
-      fleetId: '',
-      supplierId: this.supplierDetails?.id | 0,
-      vehicleNumber: '',
-      fromLocation: '',
-      toLocation: '',
-      journeyStartDate: new Date(),
-      driverName: '',
-      driverContactNumber: '',
-      note: ''
-    }
-  }
+  constructor(private fcs: FoodChainService, private authService: AuthenticationService) { }
+
+  
 
   ngOnInit(): void {
-    this.generateForm();
     this.authService.user.subscribe((loggedInUser:any) => {
+      console.log('suppler loggediin');
+      console.log(loggedInUser);
       if(loggedInUser.role == 'SUPPLIER') {
+        console.log(loggedInUser.id)
         this.supplierDetails = loggedInUser;
+        console.log(this.supplierDetails)
       }
-    })
+      this.materialFormFields = {
+        formerId: this.farmerDetails?.userId | 0,
+        materialName: '',
+        quantity: 0,
+        packageDate: "2022-02-12",
+        dispatchDate: "2022-02-12",
+        fleetId: '',
+        supplierId: this.supplierDetails?.id | 0,
+        vehicleNumber: '',
+        fromLocation: '',
+        toLocation: '',
+        journeyStartDate: "2022-02-12",
+        driverName: '',
+        driverContactNumber: '',
+        note: ''
+      }
+      this.generateForm();
+    });
+    
   }
 
   generateForm() {
@@ -77,9 +83,11 @@ export class MaterialCollectionComponent implements OnInit {
       }
       switch(key) {
         case 'formerId':
+          field.userAnswer = value.toString();
           field.disabled=true;
           break;
         case 'supplierId':
+          field.userAnswer = value.toString();
           field.disabled=true;
           break;
         default:
@@ -91,16 +99,27 @@ export class MaterialCollectionComponent implements OnInit {
 
   onSave(formOpEvent : GeneratedFormOutput) {
     if(formOpEvent.formValue) {
-      this.fcs.saveMaterialFormDetails(formOpEvent.formValue).subscribe({
-        next: (data) => {
-          alert('Form saved');
-          console.log(data);
+      this.fcs.saveMaterialFormDetails(formOpEvent.formValue).subscribe(
+        data => {
+          console.log('data')
+          console.log(data)
+          alert('data');
         },
-        error: (err) => {
-          alert('ERROR Form not saved');
-          console.log(err);
+        err => {
+          console.log('error')
+          alert(err);
         }
-      })
+      //   {
+      //   next: (data) => {
+      //     alert('Form saved');
+      //     console.log(data);
+      //   },
+      //   error: (err) => {
+      //     alert('ERROR Form not saved');
+      //     console.log(err);
+      //   }
+      // }
+      )
     }
   }
 

@@ -2,14 +2,14 @@ export interface MaterialCollectionForm {
     formerId: number;
     materialName: string;
     quantity: number;
-    packageDate: Date;
-    dispatchDate: Date;
+    packageDate: string;
+    dispatchDate: string;
     fleetId: string;
     supplierId: number;
     vehicleNumber: string;
     fromLocation: string;
     toLocation: string;
-    journeyStartDate: Date;
+    journeyStartDate: string;
     driverName: string;
     driverContactNumber: string;
     note: string;

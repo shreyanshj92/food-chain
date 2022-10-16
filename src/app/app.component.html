@@ -62,6 +62,15 @@
         >
       </li>
 
+      <li class="nav-item" *ngIf="isDistributor">
+        <a
+          class="nav-link"
+          [routerLink]="['/distributor/dashboard']"
+          routerLinkActive="active"
+          >Supplier</a
+        >
+      </li>
+
       <li class="nav-item" *ngIf="isGuest">
         <a
           class="nav-link"
