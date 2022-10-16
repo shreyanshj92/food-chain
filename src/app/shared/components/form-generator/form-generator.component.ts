@@ -1,6 +1,6 @@
 import * as _moment from 'moment';
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormField, GeneratedFormOutput } from '../../interfaces/form-field';
 
@@ -13,7 +13,7 @@ import { Output } from '@angular/core';
   templateUrl: './form-generator.component.html',
   styleUrls: ['./form-generator.component.scss']
 })
-export class FormGeneratorComponent implements OnInit {
+export class FormGeneratorComponent implements OnInit, OnChanges {
   @Output() formDetailsOutput: EventEmitter<GeneratedFormOutput> = new EventEmitter<GeneratedFormOutput>();
   @Input() formName!: string;
   @Input() isButtonVisible: boolean = false;
@@ -25,6 +25,10 @@ export class FormGeneratorComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
+    this.createForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     this.createForm();
   }
 

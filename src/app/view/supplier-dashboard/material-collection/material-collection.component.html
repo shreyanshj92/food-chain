@@ -1,2 +1,3 @@
 <h1>Material Collections</h1>
-<app-form-generator (formDetailsOutput)="onSave($event)" [isButtonVisible]="true" [formName]="'material_collection_form'" [formFields]="formDynamicJSON"></app-form-generator>
+<app-form-generator *ngIf="batchIdValue == ''" (formDetailsOutput)="onSave($event)" [isButtonVisible]="true" [formName]="'material_collection_form'" [formFields]="formDynamicJSON"></app-form-generator>
+<app-qr-code-generator *ngIf="batchIdValue !== ''" [myAngularxQrCode]="batchIdValue"></app-qr-code-generator>

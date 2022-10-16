@@ -26,9 +26,9 @@ export class FoodChainService {
   // POST API to save the material collection form details, used by supplier.
   saveMaterialFormDetails(
     materialFormDetails: MaterialCollectionForm
-  ): Observable<string> {
+  ): Observable<any> {
     const url = `${this.baseURL}/save/materialInfo`;
-    return this.http.post<string>(url, materialFormDetails);
+    return this.http.post<any>(url, materialFormDetails);
   }
 
   // GET API to fetch the list of All Retailers

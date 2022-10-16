@@ -1,1 +1,5 @@
-<app-form-generator (formDetailsOutput)="onSave($event)" [isButtonVisible]="true" [formName]="'distributor_collection_form'" [formFields]="formDynamicJSON"></app-form-generator>
+<div *ngIf="showQrScanner" class="col-md-8 offset-md-2">
+    <app-qr-code-reader (onCaptureBatchCode)="onCaptureBatchId($event)"></app-qr-code-reader>
+</div>
+<app-form-generator *ngIf="!showQrScanner" (formDetailsOutput)="onSave($event)" [isButtonVisible]="true"
+    [formName]="'distributor_collection_form'" [formFields]="formDynamicJSON"></app-form-generator>

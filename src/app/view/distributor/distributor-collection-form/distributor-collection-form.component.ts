@@ -15,6 +15,7 @@ import { UserDetails } from 'src/app/shared/interfaces/user-details';
 export class DistributorCollectionFormComponent implements OnInit {
   @Input() retailerDetails!:UserDetails;
   distributerDetails: any;
+  showQrScanner: boolean = true;
 
   distributorCollectionForm!: DistributerCollectionForm; 
 
@@ -102,6 +103,14 @@ export class DistributorCollectionFormComponent implements OnInit {
           console.log(err);
         }
       })
+    }
+  }
+
+  onCaptureBatchId(qrBatchId: string) {
+    alert(qrBatchId);
+    if(this.retailerDetails) {
+      this.distributorCollectionForm.batchId = qrBatchId;
+      this.showQrScanner = false;
     }
   }
 }

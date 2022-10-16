@@ -15,6 +15,7 @@ import { UserDetails } from 'src/app/shared/interfaces/user-details';
 export class MaterialCollectionComponent implements OnInit {
   @Input() farmerDetails!:UserDetails;
   supplierDetails: any;
+  batchIdValue: string = '';
 
   materialFormFields!: MaterialCollectionForm; 
 
@@ -101,12 +102,14 @@ export class MaterialCollectionComponent implements OnInit {
     if(formOpEvent.formValue) {
       this.fcs.saveMaterialFormDetails(formOpEvent.formValue).subscribe(
         data => {
-          console.log('data')
-          console.log(data)
-          alert('data');
+          console.log('data');
+          console.log(data);
+          alert(data);
+          this.batchIdValue = data
         },
         err => {
           console.log('error')
+          console.log(err)
           alert(err);
         }
       //   {
