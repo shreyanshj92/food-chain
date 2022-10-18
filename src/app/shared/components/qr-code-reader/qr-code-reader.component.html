@@ -1,37 +1,37 @@
 <div class="row">
-  <div class="col-md-6 offset-md-3">
-    <mat-form-field appearance="outline">
-      <mat-label>Search</mat-label>
-      <input matInput [(ngModel)]="searchTerm" />
-    </mat-form-field>
-    <button
-      mat-raised-button
-      type="button"
-      (click)="isReadyToScaneCode = !isReadyToScaneCode"
-    >
-      Scan QR Code
-    </button>
-    <button mat-raised-button (click)="onDirectSearch()">Submit</button>
+    <div class="col-md-6 offset-md-3">
+        <div *ngIf="!qrResultString">
+            <mat-form-field appearance="outline">
+                <mat-label>Search</mat-label>
+                <input matInput [(ngModel)]="searchTerm" />
+            </mat-form-field>
+            <div class="action-btn">
+                <button mat-raised-button color="primary" type="button" (click)="isReadyToScaneCode = !isReadyToScaneCode">
+                    Scan QR Code
+                </button>
+                <button mat-raised-button color="secondary" (click)="onDirectSearch()">Submit</button>
+            </div>
 
-    <div class="scanner">
-      <div *ngIf="isReadyToScaneCode && !qrResultString">
-        Capture your QR code:
+            <div class="scanner">
+                <div *ngIf="isReadyToScaneCode">
+                    Capture your QR code:
 
-        <zxing-scanner
-          start="true"
-          (scanSuccess)="onCodeResult($event)"
-          [formats]="allowedFormats"
-        ></zxing-scanner>
+                    <zxing-scanner start="true" (scanSuccess)="onCodeResult($event)" [formats]="allowedFormats">
+                    </zxing-scanner>
+                </div>
+            </div>
+        </div>
 
-        <section  *ngIf="qrResultString">
-          <div class="results">
-            <small>Result</small>
-            <strong>{{ qrResultString }}</strong>
-          </div>
-          <button mat-stroked-button (click)="onCapturingQRCode()">Fetch Product Detail</button>
-          <button mat-stroked-button (click)="clearResult()">Clear</button>
-        </section>
-      </div>
+        <!--Display result  -->
+        <div *ngIf="qrResultString">
+            <div class="results">
+                <small>Result</small>
+                <strong>{{ qrResultString }}</strong>
+            </div>
+            <div class="action-btn">
+                <button mat-raised-button color="primary" (click)="onCapturingQRCode()">Fetch Product Detail</button>
+                <button mat-raised-button color="secondary" (click)="clearResult()">Clear</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

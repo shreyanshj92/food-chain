@@ -1,5 +1,6 @@
 {
     "git.ignoreLimitWarning": true,
     "prettier.printWidth": 120,
-    "prettier.tabWidth": 4
+    "prettier.tabWidth": 4,
+    "prettier.useEditorConfig": false
 }

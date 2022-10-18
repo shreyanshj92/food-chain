@@ -1,18 +1,28 @@
+.col-md-6.img {
+    text-align: center;
+
+    .food-chain-animation {
+        height: 500px;
+
+    }
+}
+
+
 .card {
     border-color: transparent;
     border-radius: 10px;
 
-    .card-body{
+    .card-body {
         background-color: #b3cef747;
         border-radius: 5px;
         padding: 30px 20px;
-        
 
-        .mat-form-field{
+
+        .mat-form-field {
             width: 100%;
         }
 
-        .mat-flat-button{
+        .mat-flat-button {
             float: right;
             margin-left: 8px;
         }

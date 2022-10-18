@@ -10,9 +10,10 @@ import { LoginComponent } from './view/login/login.component';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
+import { HomeComponent } from './view/home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
