@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   isGuestUser = false;
   validationMessage = '';
   authSubscription!: Subscription;
+  authSubscriptionGuest!: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -77,7 +78,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       "test"
     );
 
-    this.authSubscription = this.authenticationService.user
+    this.authSubscriptionGuest = this.authenticationService.user
       .pipe(take(1))
       .subscribe((userDetails: any) => {
         if (userDetails) {
@@ -90,5 +91,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.authSubscription.unsubscribe();
+    this.authSubscriptionGuest.unsubscribe();
   }
 }

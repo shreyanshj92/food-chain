@@ -1,48 +1,42 @@
-
-.scanner{
-  max-width: 400px;
-  margin: 0 auto;
+.scanner {
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 zxing-scanner {
-  max-width: 100%;
+    max-width: 100%;
 }
 
 video {
-  background: black;
-  display: block;
+    background: black;
+    display: block;
 }
 
 
 .results {
+    margin: 20px;
+    padding: 15px;
+    background: #02c3c3;
+    color: #fff;
 
-  position: sticky;
-  bottom: 0;
-  padding: 15px;
-  background: #02c3c3;
-  color: #fff;
-
-  small {
-    font-weight: bolder;
-    display: block;
-    font-size: 60%;
-    margin: -.6em 0 0 0;
-  }
-
-  .mat-icon-button {
-    float: right;
-    margin-top: -10px;
-  }
+    small {
+        font-weight: bolder;
+        display: block;
+        font-size: 60%;
+        margin: -.6em 0 0 0;
+    }
 }
 
 .row {
-  .mat-form-field{
-    width: 100%;
-  }
+    .mat-form-field {
+        width: 100%;
+    }
 
-  .mat-raised-button{
-    float: right;
-    margin-left: 8px;
-  }
+    .action-btn {
+        text-align: center;
+
+        .mat-raised-button {
+            margin-right: 8px;
+        }
+    }
 }
-
